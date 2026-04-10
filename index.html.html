@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weON Analytics | Enterprise Edition</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap');
+
+        :root {
+            --bg: #080a0f;
+            --surface: #010203;
+            --surface-light: #1a1f29;
+            --border: #232935;
+            --accent: #00f2c3; 
+            --accent-glow: rgba(11, 88, 73, 0.15);
+            --primary: #6366f1; 
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --danger: #ff4d4d;
+            --danger-glow: rgba(255, 77, 77, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass: rgba(17, 21, 29, 0.7);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 1.5rem 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+
+        main { max-width: 1300px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+        .card { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            border-radius: 20px; 
+            padding: 1.8rem; 
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* CONFIG AREA */
+        .config-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 1.5rem; 
+            margin-bottom: 3rem;
+            background: linear-gradient(145deg, var(--surface), var(--bg));
+        }
+
+        .input-group label { 
+            display: block; font-size: 0.7rem; font-weight: 700; 
+            text-transform: uppercase; color: var(--text-muted); 
+            margin-bottom: 0.6rem; letter-spacing: 1.2px; 
+        }
+
+        select, input { 
+            width: 100%; background: var(--surface-light); border: 1px solid var(--border); 
+            color: white; padding: 0.8rem 1rem; border-radius: 12px; font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        select:focus, input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+        
+        .btn-analyze {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: white; border: none; padding: 0 1.5rem; height: 3.2rem;
+            border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .btn-analyze:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); filter: brightness(1.1); }
+        .btn-analyze:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+        /* KPI SECTION */
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .kpi-card { 
+            text-align: left; padding: 2rem; 
+            position: relative; overflow: hidden;
+            border-bottom: 3px solid transparent;
+        }
+        .kpi-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent 60%, var(--kpi-glow, transparent));
+            opacity: 0.4; pointer-events: none;
+        }
+
+        .kpi-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .kpi-value { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; margin-top: 0.5rem; }
+
+        .total-card { border-bottom-color: var(--primary); --kpi-glow: var(--primary-glow); }
+        .success-card { border-bottom-color: var(--accent); --kpi-glow: var(--accent-glow); }
+        .fail-card { border-bottom-color: var(--danger); --kpi-glow: var(--danger-glow); }
+
+        /* BREAKDOWN SECTION */
+        .section-title { 
+            font-family: 'Syne'; margin-bottom: 1.5rem; font-size: 1.1rem; 
+            display: flex; align-items: center; gap: 10px; color: var(--text-main);
+        }
+        .breakdown-container { display: grid; grid-template-columns: 1fr 400px; gap: 1.5rem; }
+        
+        .status-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .status-item { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.2rem; background: var(--surface-light);
+            border-radius: 12px; border: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .status-item:hover { border-color: var(--border); background: #1e2532; }
+        .status-name { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); }
+        .status-count { font-family: 'Syne'; font-size: 1rem; font-weight: 700; }
+
+        .count-success { color: var(--accent); }
+        .count-fail { color: var(--danger); }
+
+        /* CHART & SUMMARY */
+        .chart-box { height: 260px; margin: 1rem 0; }
+        
+        .summary-badge {
+            margin-top: 1.5rem; padding: 1.2rem; 
+            background: rgba(255,255,255,0.03); 
+            border-radius: 14px; border-left: 4px solid var(--primary);
+        }
+
+        #results { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 1024px) { .breakdown-container { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .kpi-grid { grid-template-columns: 1fr; } .main { padding: 1rem; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">weON Analise de Disparo de Campanhas</span></div>
+    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">
+        <span style="color: var(--accent); margin-right: 5px;">●</span> LIVE SYSTEM
+    </div>
+</header>
+
+<main>
+    <section class="card config-grid" id="setup">
+        <div class="input-group">
+            <label>Distribuidora</label>
+            <select id="dist">
+                <option value="">Selecione...</option>
+                <option value="Dismatal">Dismatal</option>
+                <option value="Osten">Osten</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Campanha</label>
+            <select id="campanha">
+                <option value="">Selecione...</option>
+                <option value="Externos">Externos</option>
+                <option value="Internos">Internos</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Mailing (CSV weON)</label>
+            <input type="file" id="csvFile" accept=".csv">
+        </div>
+        <div class="input-group" style="display:flex; align-items:flex-end;">
+            <button class="btn-analyze" id="btnGo" disabled onclick="processar()">
+                Analisar Performance
+            </button>
+        </div>
+    </section>
+
+    <div id="results">
+        <div class="kpi-grid">
+            <div class="card kpi-card total-card">
+                <div class="kpi-label">Total de Clientes</div>
+                <div class="kpi-value" id="res-total" style="color: var(--primary);">0</div>
+            </div>
+            <div class="card kpi-card success-card">
+                <div class="kpi-label">Sucesso de Envio</div>
+                <div class="kpi-value" id="res-sucesso" style="color: var(--accent);">0</div>
+            </div>
+            <div class="card kpi-card fail-card">
+                <div class="kpi-label">Falha de Envio</div>
+                <div class="kpi-value" id="res-falha" style="color: var(--danger);">0</div>
+            </div>
+        </div>
+
+        <div class="breakdown-container">
+            <div class="card">
+                <h3 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    Distribuição de Status
+                </h3>
+                <div class="status-list">
+                    <div class="status-item"><span class="status-name">Entregue</span><span class="status-count count-success" id="det-entregue">0</span></div>
+                    <div class="status-item"><span class="status-name">Enviado</span><span class="status-count count-success" id="det-enviado">0</span></div>
+                    <div class="status-item"><span class="status-name">Visualizado</span><span class="status-count count-success" id="det-visualizado">0</span></div>
+                    <div class="status-item"><span class="status-name">Respondido</span><span class="status-count count-success" id="det-respondido">0</span></div>
+                    <div class="status-item" style="border-left: 3px solid var(--danger);"><span class="status-name">Mensagem não entregue</span><span class="status-count count-fail" id="det-f-msg">0</span></div>
+                    <div class="status-item" style="border-left: 3px solid var(--danger);"><span class="status-name">Não entregue pela Meta</span><span class="status-count count-fail" id="det-f-meta">0</span></div>
+                    <div class="status-item" style="border-left: 3px solid var(--danger);"><span class="status-name">Erro experimento Meta</span><span class="status-count count-fail" id="det-f-exp">0</span></div>
+                    <div class="status-item" style="border-left: 3px solid var(--danger);"><span class="status-name">Falha Genérica</span><span class="status-count count-fail" id="det-f-gen">0</span></div>
+                </div>
+            </div>
+
+            <div class="card" style="display: flex; flex-direction: column;">
+                <h3 class="section-title">Performance Relativa</h3>
+                <div class="chart-box">
+                    <canvas id="mainChart"></canvas>
+                </div>
+                <div class="summary-badge">
+                    <p id="txt-resumo" style="font-size: 0.85rem; color: var(--text-main); font-weight: 500;"></p>
+                </div>
+                <button class="btn-analyze" style="margin-top: 1.5rem; background: var(--surface-light); color: var(--text-muted); box-shadow: none;" onclick="location.reload()">
+                    Nova Consulta
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    /* MANUTENÇÃO DE LÓGICA: 
+       Abaixo estão as funções originais intocadas para garantir que o CSV seja lido 
+       e os cálculos realizados exatamente como antes.
+    */
+    const inputs = ['dist', 'campanha', 'csvFile'];
+    inputs.forEach(id => document.getElementById(id).addEventListener('change', () => {
+        const ok = inputs.every(i => document.getElementById(i).value || document.getElementById(i).files?.length);
+        document.getElementById('btnGo').disabled = !ok;
+    }));
+
+    function robustParse(text) {
+        const rows = [];
+        let curr = [];
+        let val = '';
+        let quotes = false;
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const next = text[i+1];
+            if (char === '"') {
+                if (quotes && next === '"') { val += '"'; i++; }
+                else { quotes = !quotes; }
+            } else if (char === ';' && !quotes) {
+                curr.push(val.trim()); val = '';
+            } else if ((char === '\n' || char === '\r') && !quotes) {
+                if (val || curr.length > 0) {
+                    curr.push(val.trim());
+                    rows.push(curr);
+                    curr = []; val = '';
+                }
+            } else { val += char; }
+        }
+        if (curr.length > 0) { curr.push(val.trim()); rows.push(curr); }
+        return rows;
+    }
+
+    let chart = null;
+
+    function processar() {
+        const file = document.getElementById('csvFile').files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = robustParse(e.target.result);
+            const header = data[0].map(h => h.toLowerCase().replace(/"/g, ''));
+            const sIdx = header.indexOf('status do envio');
+            if (sIdx === -1) return alert("Erro: Coluna 'Status do envio' não encontrada!");
+
+            const stats = { entregue: 0, enviado: 0, visualizado: 0, respondido: 0, f_msg: 0, f_meta: 0, f_exp: 0, f_gen: 0 };
+            const rows = data.slice(1);
+            rows.forEach(row => {
+                const s = (row[sIdx] || "").toLowerCase();
+                if (s.includes("entregue")) stats.entregue++;
+                else if (s.includes("visualizado")) stats.visualizado++;
+                else if (s.includes("respondido")) stats.respondido++;
+                else if (s.includes("enviado")) stats.enviado++;
+                else if (s.includes("não pôde ser entregue")) stats.f_msg++;
+                else if (s.includes("pela meta")) stats.f_meta++;
+                else if (s.includes("experimento")) stats.f_exp++;
+                else if (s !== "") stats.f_gen++;
+            });
+            const total = rows.length;
+            const sucesso = stats.entregue + stats.enviado + stats.visualizado + stats.respondido;
+            const falha = stats.f_msg + stats.f_meta + stats.f_exp + stats.f_gen;
+            render(total, sucesso, falha, stats);
+        };
+        reader.readAsText(file);
+    }
+
+    function render(total, sucesso, falha, det) {
+        document.getElementById('setup').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+
+        document.getElementById('res-total').innerText = total.toLocaleString();
+        document.getElementById('res-sucesso').innerText = sucesso.toLocaleString();
+        document.getElementById('res-falha').innerText = falha.toLocaleString();
+
+        document.getElementById('det-entregue').innerText = det.entregue;
+        document.getElementById('det-enviado').innerText = det.enviado;
+        document.getElementById('det-visualizado').innerText = det.visualizado;
+        document.getElementById('det-respondido').innerText = det.respondido;
+        document.getElementById('det-f-msg').innerText = det.f_msg;
+        document.getElementById('det-f-meta').innerText = det.f_meta;
+        document.getElementById('det-f-exp').innerText = det.f_exp;
+        document.getElementById('det-f-gen').innerText = det.f_gen;
+
+        const taxa = ((sucesso / total) * 100).toFixed(1);
+        document.getElementById('txt-resumo').innerHTML = `
+            <span style="color:var(--primary)">${document.getElementById('dist').value}</span> | 
+            <span style="color:var(--text-main)">${document.getElementById('campanha').value}</span><br>
+            <span style="font-size: 1.2rem; font-weight: 800; color:var(--accent)">${taxa}%</span> de sucesso na operação.
+        `;
+
+        const ctx = document.getElementById('mainChart').getContext('2d');
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sucesso', 'Falha'],
+                datasets: [{
+                    data: [sucesso, falha],
+                    backgroundColor: ['#00f2c3', '#ff4d4d'],
+                    hoverOffset: 20,
+                    borderWidth: 0,
+                    borderRadius: 10
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', weight: '600', size: 12 } } } 
+                },
+                cutout: '78%'
+            }
+        });
+    }
+</script>
+</body>
+</html>
