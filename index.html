@@ -430,8 +430,19 @@
             <button class="btn-auth" id="btnSignup" onclick="doSignup()">Criar conta</button>
         </div>
 
-        <div class="auth-footer">
-            Acesso restrito · weON Analytics
+        <!-- FORGOT PASSWORD -->
+        <div id="forgotForm" class="auth-form" style="display:none;">
+            <div class="auth-input-group">
+                <label>E-mail cadastrado</label>
+                <input class="auth-input" type="email" id="forgotEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter') doForgot()">
+            </div>
+            <button class="btn-auth" id="btnForgot" onclick="doForgot()">Enviar link de redefinição</button>
+            <button onclick="switchTab('login')" style="background:none;border:none;color:var(--text-muted);font-family:inherit;font-size:0.85rem;cursor:pointer;margin-top:-0.3rem;">← Voltar para o login</button>
+        </div>
+
+        <div class="auth-footer" id="authFooter">
+            <span onclick="switchTab('forgot')" style="cursor:pointer; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px;">Esqueci minha senha</span>
+            &nbsp;·&nbsp; Acesso restrito · weON Analytics
         </div>
     </div>
 </div>
@@ -648,13 +659,32 @@
 
     function switchTab(tab) {
         clearMsg();
-        const isLogin = tab === 'login';
-        document.getElementById('loginForm').style.display  = isLogin ? 'flex' : 'none';
-        document.getElementById('signupForm').style.display = isLogin ? 'none' : 'flex';
+        document.getElementById('loginForm').style.display  = tab === 'login'  ? 'flex' : 'none';
+        document.getElementById('signupForm').style.display = tab === 'signup' ? 'flex' : 'none';
+        document.getElementById('forgotForm').style.display = tab === 'forgot' ? 'flex' : 'none';
+        document.getElementById('authFooter').style.display = tab === 'forgot' ? 'none' : 'block';
         document.querySelectorAll('.auth-tab').forEach((t, i) => {
-            t.classList.toggle('active', isLogin ? i === 0 : i === 1);
+            t.classList.toggle('active', tab === 'login' ? i === 0 : tab === 'signup' ? i === 1 : false);
         });
     }
+
+    async function doForgot() {
+        const email = document.getElementById('forgotEmail').value.trim();
+        if (!email) return showMsg('Digite seu e-mail cadastrado.', 'error');
+
+        const btn = document.getElementById('btnForgot');
+        btn.disabled = true; btn.textContent = 'Enviando...';
+
+        const { error } = await _sb.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.href
+        });
+
+        btn.disabled = false; btn.textContent = 'Enviar link de redefinição';
+
+        if (error) return showMsg('Erro ao enviar: ' + error.message, 'error');
+        showMsg('✅ Link enviado! Verifique sua caixa de entrada (e o spam).', 'success');
+    }
+
 
     async function doLogin() {
         const email = document.getElementById('loginEmail').value.trim();
