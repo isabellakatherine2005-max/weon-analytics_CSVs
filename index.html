@@ -352,7 +352,7 @@
         if (!email) return showMsg('Digite seu e-mail cadastrado.', 'error');
         const btn = document.getElementById('btnForgot');
         btn.disabled = true; btn.textContent = 'Enviando...';
-        const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
+       const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: 'https://isabellakatherine2005-max.github.io/weon-analytics_CSVs/' });
         btn.disabled = false; btn.textContent = 'Enviar link de redefinição';
         if (error) return showMsg('Erro: ' + error.message, 'error');
         showMsg('✅ Link enviado! Verifique seu e-mail (e o spam).', 'success');
