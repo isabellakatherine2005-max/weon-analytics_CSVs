@@ -9,305 +9,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap');
-
         :root {
-            --bg: #080a0f;
-            --surface: #010203;
-            --surface-light: #1a1f29;
-            --border: #232935;
-            --accent: #00f2c3;
-            --accent-glow: rgba(11, 88, 73, 0.15);
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.15);
-            --danger: #ff4d4d;
-            --danger-glow: rgba(255, 77, 77, 0.15);
-            --warning: #f59e0b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass: rgba(17, 21, 29, 0.7);
+            --bg: #080a0f; --surface: #010203; --surface-light: #1a1f29; --border: #232935;
+            --accent: #00f2c3; --accent-glow: rgba(11,88,73,0.15); --primary: #6366f1;
+            --primary-glow: rgba(99,102,241,0.15); --danger: #ff4d4d; --danger-glow: rgba(255,77,77,0.15);
+            --warning: #f59e0b; --text-main: #f8fafc; --text-muted: #94a3b8; --glass: rgba(17,21,29,0.7);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-            background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%);
-            min-height: 100vh;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%); min-height: 100vh; }
 
-        /* ===================== AUTH SCREEN ===================== */
-        #authScreen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background: var(--bg);
-            background-image:
-                radial-gradient(circle at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0,242,195,0.06) 0%, transparent 40%);
-        }
-
-        .auth-card {
-            width: 100%;
-            max-width: 420px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
-            animation: authFadeIn 0.5s cubic-bezier(0.16,1,0.3,1);
-        }
-
-        @keyframes authFadeIn {
-            from { opacity: 0; transform: translateY(24px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .auth-logo .logo-weon {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-shadow: 0 0 32px rgba(0,242,195,0.4);
-            display: block;
-        }
-        .auth-logo .logo-sub {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .auth-tabs {
-            display: flex;
-            background: var(--surface-light);
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 1.8rem;
-            gap: 4px;
-        }
-        .auth-tab {
-            flex: 1;
-            padding: 0.6rem;
-            border: none;
-            border-radius: 9px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: transparent;
-            color: var(--text-muted);
-        }
-        .auth-tab.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(99,102,241,0.35);
-        }
-
+        #authScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: var(--bg); background-image: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0,242,195,0.06) 0%, transparent 40%); }
+        .auth-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); animation: authFadeIn 0.5s cubic-bezier(0.16,1,0.3,1); }
+        @keyframes authFadeIn { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .auth-logo { text-align: center; margin-bottom: 2rem; }
+        .auth-logo .logo-weon { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); text-shadow: 0 0 32px rgba(0,242,195,0.4); display: block; }
+        .auth-logo .logo-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .auth-tabs { display: flex; background: var(--surface-light); border-radius: 12px; padding: 4px; margin-bottom: 1.8rem; gap: 4px; }
+        .auth-tab { flex: 1; padding: 0.6rem; border: none; border-radius: 9px; font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; background: transparent; color: var(--text-muted); }
+        .auth-tab.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.35); }
         .auth-form { display: flex; flex-direction: column; gap: 1rem; }
-
         .auth-input-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .auth-input-group label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-        .auth-input {
-            width: 100%;
-            background: var(--surface-light);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 0.85rem 1rem;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-        .auth-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-glow);
-        }
+        .auth-input-group label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .auth-input { width: 100%; background: var(--surface-light); border: 1px solid var(--border); color: var(--text-main); padding: 0.85rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.95rem; transition: all 0.2s ease; }
+        .auth-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
         .auth-input::placeholder { color: #3d4a5e; }
-
-        .btn-auth {
-            background: linear-gradient(135deg, var(--primary), #4338ca);
-            color: white;
-            border: none;
-            padding: 0.9rem;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99,102,241,0.3);
-            margin-top: 0.5rem;
-        }
-        .btn-auth:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99,102,241,0.45);
-            filter: brightness(1.1);
-        }
+        .btn-auth { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; border: none; padding: 0.9rem; border-radius: 12px; font-family: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99,102,241,0.3); margin-top: 0.5rem; }
+        .btn-auth:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99,102,241,0.45); filter: brightness(1.1); }
         .btn-auth:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-        .auth-msg {
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: none;
-            text-align: center;
-        }
+        .btn-auth-accent { background: linear-gradient(135deg, #0d9488, #0f766e); color: white; border: none; padding: 0.9rem; border-radius: 12px; font-family: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,242,195,0.2); margin-top: 0.5rem; }
+        .btn-auth-accent:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn-auth-accent:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .auth-msg { padding: 0.8rem 1rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500; display: none; text-align: center; }
         .auth-msg.error { background: rgba(255,77,77,0.08); border: 1px solid rgba(255,77,77,0.25); color: var(--danger); display: block; }
         .auth-msg.success { background: rgba(0,242,195,0.08); border: 1px solid rgba(0,242,195,0.25); color: var(--accent); display: block; }
+        .auth-footer { margin-top: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--text-muted); }
+        .reset-badge { display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 1rem; border-radius: 10px; margin-bottom: 0.5rem; background: rgba(0,242,195,0.05); border: 1px solid rgba(0,242,195,0.2); }
+        .reset-badge-title { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
+        .reset-badge-text { font-size: 0.82rem; color: var(--text-muted); }
 
-        .auth-footer {
-            margin-top: 1.5rem;
-            text-align: center;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        /* ===================== APP SCREEN ===================== */
         #appScreen { display: none; }
-
-        header {
-            padding: 1.5rem 3rem;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
-        }
-
+        header { padding: 1.5rem 3rem; background: var(--glass); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .logo { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
-        .logo-weon { font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--accent); text-shadow: 0 0 24px rgba(0, 242, 195, 0.35); letter-spacing: -0.5px; }
-        .logo-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--text-main); letter-spacing: -0.2px; }
-        .logo-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.0rem; font-weight: 400; color: var(--text-muted); }
-
+        .logo-weon { font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--accent); text-shadow: 0 0 24px rgba(0,242,195,0.35); letter-spacing: -0.5px; }
+        .logo-main { font-size: 1.15rem; font-weight: 600; color: var(--text-main); letter-spacing: -0.2px; }
+        .logo-sub { font-size: 1.0rem; font-weight: 400; color: var(--text-muted); }
         .header-right { display: flex; align-items: center; gap: 1.5rem; }
         .live-badge { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
-        .file-name-display {
-            font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
-            max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            opacity: 0; transition: opacity 0.4s ease; display: none;
-        }
+        .file-name-display { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transition: opacity 0.4s ease; display: none; }
         .file-name-display.visible { display: block; opacity: 1; }
         .file-name-display .file-label { color: var(--text-muted); margin-right: 3px; }
         .file-name-display .file-value { color: var(--accent); font-weight: 600; }
-
-        /* User badge + logout */
-        .user-badge {
-            display: flex; align-items: center; gap: 0.7rem;
-            background: var(--surface-light);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.4rem 0.9rem;
-        }
-        .user-email {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            max-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .btn-logout {
-            background: none;
-            border: none;
-            color: var(--danger);
-            font-size: 0.72rem;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            padding: 0;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: opacity 0.2s;
-        }
+        .user-badge { display: flex; align-items: center; gap: 0.7rem; background: var(--surface-light); border: 1px solid var(--border); border-radius: 10px; padding: 0.4rem 0.9rem; }
+        .user-email { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .btn-logout { background: none; border: none; color: var(--danger); font-size: 0.72rem; font-weight: 700; cursor: pointer; font-family: inherit; padding: 0; letter-spacing: 0.5px; text-transform: uppercase; transition: opacity 0.2s; }
         .btn-logout:hover { opacity: 0.7; }
-
-        @media (max-width: 640px) {
-            header { padding: 1rem 1.2rem; gap: 0.8rem; flex-wrap: wrap; }
-            .logo-weon { font-size: 1.25rem; }
-            .logo-main { font-size: 0.95rem; }
-            .logo-sub { font-size: 0.85rem; }
-            .file-name-display { max-width: 140px; font-size: 0.7rem; }
-            .user-email { display: none; }
-        }
+        @media (max-width: 640px) { header { padding: 1rem 1.2rem; gap: 0.8rem; flex-wrap: wrap; } .logo-weon { font-size: 1.25rem; } .logo-main { font-size: 0.95rem; } .file-name-display { max-width: 140px; font-size: 0.7rem; } .user-email { display: none; } }
 
         main { max-width: 1300px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.8rem;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-        }
-
-        .config-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(145deg, var(--surface), var(--bg));
-        }
-        .input-group label {
-            display: block; font-size: 0.7rem; font-weight: 700;
-            text-transform: uppercase; color: var(--text-muted);
-            margin-bottom: 0.6rem; letter-spacing: 1.2px;
-        }
-        select, input[type="file"] {
-            width: 100%; background: var(--surface-light); border: 1px solid var(--border);
-            color: white; padding: 0.8rem 1rem; border-radius: 12px; font-family: inherit;
-            transition: all 0.2s ease;
-        }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.8rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+        .config-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; background: linear-gradient(145deg, var(--surface), var(--bg)); }
+        .input-group label { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; letter-spacing: 1.2px; }
+        select, input[type="file"] { width: 100%; background: var(--surface-light); border: 1px solid var(--border); color: white; padding: 0.8rem 1rem; border-radius: 12px; font-family: inherit; transition: all 0.2s ease; }
         select:focus, input[type="file"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
-
-        .btn-analyze {
-            background: linear-gradient(135deg, var(--primary), #4338ca);
-            color: white; border: none; padding: 0 1.5rem; height: 3.2rem; width: 100%;
-            border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); font-family: inherit; font-size: 0.9rem;
-        }
-        .btn-analyze:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); filter: brightness(1.1); }
+        .btn-analyze { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; border: none; padding: 0 1.5rem; height: 3.2rem; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99,102,241,0.3); font-family: inherit; font-size: 0.9rem; }
+        .btn-analyze:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99,102,241,0.4); filter: brightness(1.1); }
         .btn-analyze:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-
         .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
-        .kpi-card {
-            text-align: left; padding: 2rem;
-            position: relative; overflow: hidden;
-            border-bottom: 3px solid transparent;
-        }
-        .kpi-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, transparent 60%, var(--kpi-glow, transparent));
-            opacity: 0.4; pointer-events: none;
-        }
+        .kpi-card { text-align: left; padding: 2rem; position: relative; overflow: hidden; border-bottom: 3px solid transparent; }
+        .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 60%, var(--kpi-glow, transparent)); opacity: 0.4; pointer-events: none; }
         .kpi-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .kpi-value { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; margin-top: 0.5rem; }
         .kpi-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; font-weight: 500; }
         .total-card { border-bottom-color: var(--primary); --kpi-glow: var(--primary-glow); }
         .success-card { border-bottom-color: var(--accent); --kpi-glow: var(--accent-glow); }
         .fail-card { border-bottom-color: var(--danger); --kpi-glow: var(--danger-glow); }
-
-        .insight-banner {
-            display: flex; align-items: center; gap: 1rem;
-            padding: 1rem 1.4rem; border-radius: 14px; margin-bottom: 2rem;
-            border: 1px solid; animation: slideUp 0.5s ease;
-        }
+        .insight-banner { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border-radius: 14px; margin-bottom: 2rem; border: 1px solid; animation: slideUp 0.5s ease; }
         .insight-icon { font-size: 1.4rem; flex-shrink: 0; }
         .insight-text { font-size: 0.9rem; font-weight: 600; }
         .insight-level { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
@@ -315,31 +91,19 @@
         .insight-bom { background: rgba(99,102,241,0.06); border-color: rgba(99,102,241,0.3); color: var(--primary); }
         .insight-atencao { background: rgba(245,158,11,0.06); border-color: rgba(245,158,11,0.3); color: var(--warning); }
         .insight-critico { background: rgba(255,77,77,0.06); border-color: rgba(255,77,77,0.3); color: var(--danger); }
-
         .funil-section { margin-bottom: 2rem; }
         .funil-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .funil-card {
-            background: var(--surface-light); border-radius: 14px; padding: 1.2rem;
-            border: 1px solid var(--border); text-align: center; position: relative;
-        }
+        .funil-card { background: var(--surface-light); border-radius: 14px; padding: 1.2rem; border: 1px solid var(--border); text-align: center; position: relative; }
         .funil-arrow { position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--text-muted); z-index: 1; }
         .funil-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 0.5rem; }
         .funil-value { font-family: 'Syne'; font-size: 1.6rem; font-weight: 800; }
         .funil-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem; }
         .funil-bar { height: 4px; border-radius: 2px; margin-top: 0.8rem; background: var(--border); overflow: hidden; }
         .funil-bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
-
-        .section-title {
-            font-family: 'Syne'; margin-bottom: 1.5rem; font-size: 1.1rem;
-            display: flex; align-items: center; gap: 10px; color: var(--text-main);
-        }
+        .section-title { font-family: 'Syne'; margin-bottom: 1.5rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
         .breakdown-container { display: grid; grid-template-columns: 1fr 420px; gap: 1.5rem; margin-bottom: 2rem; }
         .status-list { display: flex; flex-direction: column; gap: 0.5rem; }
-        .status-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.85rem 1.2rem; background: var(--surface-light);
-            border-radius: 12px; border: 1px solid transparent; transition: 0.2s;
-        }
+        .status-item { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.2rem; background: var(--surface-light); border-radius: 12px; border: 1px solid transparent; transition: 0.2s; }
         .status-item:hover { border-color: var(--border); background: #1e2532; }
         .status-name { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); }
         .status-right { display: flex; align-items: center; gap: 0.8rem; }
@@ -349,39 +113,18 @@
         .pct-fail { background: rgba(255,77,77,0.1); color: var(--danger); }
         .count-success { color: var(--accent); }
         .count-fail { color: var(--danger); }
-
         .chart-box { height: 220px; margin: 1rem 0; }
         .bar-chart-box { height: 200px; margin: 1rem 0; }
-
-        .summary-badge {
-            margin-top: 1rem; padding: 1.2rem;
-            background: rgba(255,255,255,0.03);
-            border-radius: 14px; border-left: 4px solid var(--primary);
-        }
-
+        .summary-badge { margin-top: 1rem; padding: 1.2rem; background: rgba(255,255,255,0.03); border-radius: 14px; border-left: 4px solid var(--primary); }
         .second-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-        .gargalo-badge {
-            display: flex; align-items: center; gap: 0.8rem;
-            padding: 1rem 1.4rem; background: rgba(255,77,77,0.05);
-            border: 1px solid rgba(255,77,77,0.2); border-radius: 12px; margin-bottom: 1rem;
-        }
+        .gargalo-badge { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.4rem; background: rgba(255,77,77,0.05); border: 1px solid rgba(255,77,77,0.2); border-radius: 12px; margin-bottom: 1rem; }
         .gargalo-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); font-weight: 700; }
         .gargalo-name { font-size: 1rem; font-weight: 700; color: var(--text-main); }
-
-        #results { display: none; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        #results { display: none; animation: slideUp 0.6s cubic-bezier(0.16,1,0.3,1); }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
         @media (max-width: 1024px) { .breakdown-container { grid-template-columns: 1fr; } .second-row { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .kpi-grid { grid-template-columns: 1fr; } .funil-grid { grid-template-columns: 1fr; } }
-
-        .btn-pdf {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            margin-top: 0.75rem; width: 100%; padding: 0 1.5rem; height: 3.2rem;
-            background: linear-gradient(135deg, rgba(0,242,195,0.12), rgba(0,242,195,0.06));
-            color: var(--accent); border: 1px solid rgba(0,242,195,0.25);
-            border-radius: 12px; font-family: inherit; font-weight: 700; font-size: 0.9rem;
-            cursor: pointer; transition: all 0.3s ease;
-        }
+        .btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 0.75rem; width: 100%; padding: 0 1.5rem; height: 3.2rem; background: linear-gradient(135deg, rgba(0,242,195,0.12), rgba(0,242,195,0.06)); color: var(--accent); border: 1px solid rgba(0,242,195,0.25); border-radius: 12px; font-family: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
         .btn-pdf:hover { background: linear-gradient(135deg, rgba(0,242,195,0.2), rgba(0,242,195,0.1)); box-shadow: 0 0 20px rgba(0,242,195,0.15); transform: translateY(-2px); }
         .btn-pdf:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
         .btn-pdf.loading { opacity: 0.7; cursor: wait; }
@@ -397,7 +140,7 @@
             <span class="logo-sub">Analytics · Enterprise Edition</span>
         </div>
 
-        <div class="auth-tabs">
+        <div class="auth-tabs" id="authTabs">
             <button class="auth-tab active" onclick="switchTab('login')">Entrar</button>
             <button class="auth-tab" onclick="switchTab('signup')">Criar conta</button>
         </div>
@@ -440,8 +183,28 @@
             <button onclick="switchTab('login')" style="background:none;border:none;color:var(--text-muted);font-family:inherit;font-size:0.85rem;cursor:pointer;margin-top:-0.3rem;">← Voltar para o login</button>
         </div>
 
+        <!-- NEW PASSWORD — aparece após clicar no link do e-mail -->
+        <div id="newpasswordForm" class="auth-form" style="display:none;">
+            <div class="reset-badge">
+                <span style="font-size:1.3rem;">🔐</span>
+                <div>
+                    <div class="reset-badge-title">Redefinir senha</div>
+                    <div class="reset-badge-text">Digite e confirme sua nova senha.</div>
+                </div>
+            </div>
+            <div class="auth-input-group">
+                <label>Nova senha</label>
+                <input class="auth-input" type="password" id="newPass" placeholder="Mín. 6 caracteres">
+            </div>
+            <div class="auth-input-group">
+                <label>Confirmar nova senha</label>
+                <input class="auth-input" type="password" id="newPassConfirm" placeholder="Repita a senha" onkeydown="if(event.key==='Enter') doResetPassword()">
+            </div>
+            <button class="btn-auth-accent" id="btnReset" onclick="doResetPassword()">Salvar nova senha</button>
+        </div>
+
         <div class="auth-footer" id="authFooter">
-            <span onclick="switchTab('forgot')" style="cursor:pointer; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px;">Esqueci minha senha</span>
+            <span onclick="switchTab('forgot')" style="cursor:pointer;color:var(--text-muted);text-decoration:underline;text-underline-offset:3px;">Esqueci minha senha</span>
             &nbsp;·&nbsp; Acesso restrito · weON Analytics
         </div>
     </div>
@@ -457,9 +220,7 @@
         </div>
         <div class="header-right">
             <div id="fileNameDisplay" class="file-name-display"></div>
-            <div class="live-badge">
-                <span style="color: var(--accent); margin-right: 5px;">●</span> LIVE SYSTEM
-            </div>
+            <div class="live-badge"><span style="color:var(--accent);margin-right:5px;">●</span> LIVE SYSTEM</div>
             <div class="user-badge">
                 <span class="user-email" id="userEmailDisplay">—</span>
                 <button class="btn-logout" onclick="doLogout()">Sair</button>
@@ -489,115 +250,47 @@
                 <label>📄 Mailing (CSV weON)</label>
                 <input type="file" id="csvFile" accept=".csv">
             </div>
-            <div class="input-group" style="display:flex; align-items:flex-end;">
-                <button class="btn-analyze" id="btnGo" disabled onclick="processar()">
-                    Analisar Performance
-                </button>
+            <div class="input-group" style="display:flex;align-items:flex-end;">
+                <button class="btn-analyze" id="btnGo" disabled onclick="processar()">Analisar Performance</button>
             </div>
         </section>
 
         <div id="results">
             <div id="insightBanner" class="insight-banner" style="display:none;"></div>
-
             <div class="kpi-grid">
-                <div class="card kpi-card total-card">
-                    <div class="kpi-label">Total de Clientes</div>
-                    <div class="kpi-value" id="res-total" style="color: var(--primary);">—</div>
-                </div>
-                <div class="card kpi-card success-card">
-                    <div class="kpi-label">Sucesso de Envio</div>
-                    <div class="kpi-value" id="res-sucesso" style="color: var(--accent);">—</div>
-                    <div class="kpi-sub" id="kpi-taxa-sucesso"></div>
-                </div>
-                <div class="card kpi-card fail-card">
-                    <div class="kpi-label">Falha de Envio</div>
-                    <div class="kpi-value" id="res-falha" style="color: var(--danger);">—</div>
-                    <div class="kpi-sub" id="kpi-taxa-falha"></div>
-                </div>
+                <div class="card kpi-card total-card"><div class="kpi-label">Total de Clientes</div><div class="kpi-value" id="res-total" style="color:var(--primary);">—</div></div>
+                <div class="card kpi-card success-card"><div class="kpi-label">Sucesso de Envio</div><div class="kpi-value" id="res-sucesso" style="color:var(--accent);">—</div><div class="kpi-sub" id="kpi-taxa-sucesso"></div></div>
+                <div class="card kpi-card fail-card"><div class="kpi-label">Falha de Envio</div><div class="kpi-value" id="res-falha" style="color:var(--danger);">—</div><div class="kpi-sub" id="kpi-taxa-falha"></div></div>
             </div>
 
             <div class="card funil-section">
-                <h3 class="section-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                    Funil de Conversão
-                </h3>
+                <h3 class="section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Funil de Conversão</h3>
                 <div class="funil-grid">
-                    <div class="funil-card" style="border-color: rgba(0,242,195,0.2);">
-                        <div class="funil-label">Entregue</div>
-                        <div class="funil-value" id="funil-entregue" style="color: var(--accent);">—</div>
-                        <div class="funil-sub" id="funil-entregue-pct"></div>
-                        <div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-entregue" style="background: var(--accent); width:0%"></div></div>
-                        <div class="funil-arrow">→</div>
-                    </div>
-                    <div class="funil-card" style="border-color: rgba(99,102,241,0.2);">
-                        <div class="funil-label">Visualização</div>
-                        <div class="funil-value" id="funil-viz" style="color: var(--primary);">—</div>
-                        <div class="funil-sub" id="funil-viz-pct"></div>
-                        <div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-viz" style="background: var(--primary); width:0%"></div></div>
-                        <div class="funil-arrow">→</div>
-                    </div>
-                    <div class="funil-card" style="border-color: rgba(245,158,11,0.2);">
-                        <div class="funil-label">Resposta</div>
-                        <div class="funil-value" id="funil-resp" style="color: var(--warning);">—</div>
-                        <div class="funil-sub" id="funil-resp-pct"></div>
-                        <div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-resp" style="background: var(--warning); width:0%"></div></div>
-                    </div>
+                    <div class="funil-card" style="border-color:rgba(0,242,195,0.2);"><div class="funil-label">Entregue</div><div class="funil-value" id="funil-entregue" style="color:var(--accent);">—</div><div class="funil-sub" id="funil-entregue-pct"></div><div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-entregue" style="background:var(--accent);width:0%"></div></div><div class="funil-arrow">→</div></div>
+                    <div class="funil-card" style="border-color:rgba(99,102,241,0.2);"><div class="funil-label">Visualização</div><div class="funil-value" id="funil-viz" style="color:var(--primary);">—</div><div class="funil-sub" id="funil-viz-pct"></div><div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-viz" style="background:var(--primary);width:0%"></div></div><div class="funil-arrow">→</div></div>
+                    <div class="funil-card" style="border-color:rgba(245,158,11,0.2);"><div class="funil-label">Resposta</div><div class="funil-value" id="funil-resp" style="color:var(--warning);">—</div><div class="funil-sub" id="funil-resp-pct"></div><div class="funil-bar"><div class="funil-bar-fill" id="funil-bar-resp" style="background:var(--warning);width:0%"></div></div></div>
                 </div>
             </div>
 
             <div class="breakdown-container">
                 <div class="card">
-                    <h3 class="section-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
-                        Distribuição de Status
-                    </h3>
+                    <h3 class="section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>Distribuição de Status</h3>
                     <div class="status-list">
-                        <div class="status-item">
-                            <span class="status-name">Entregue</span>
-                            <div class="status-right"><span class="status-pct pct-success" id="pct-entregue">—</span><span class="status-count count-success" id="det-entregue">—</span></div>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-name">Enviado</span>
-                            <div class="status-right"><span class="status-pct pct-success" id="pct-enviado">—</span><span class="status-count count-success" id="det-enviado">—</span></div>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-name">Visualizado</span>
-                            <div class="status-right"><span class="status-pct pct-success" id="pct-visualizado">—</span><span class="status-count count-success" id="det-visualizado">—</span></div>
-                        </div>
-                        <div class="status-item">
-                            <span class="status-name">Respondido</span>
-                            <div class="status-right"><span class="status-pct pct-success" id="pct-respondido">—</span><span class="status-count count-success" id="det-respondido">—</span></div>
-                        </div>
-                        <div class="status-item" style="border-left: 3px solid var(--danger);">
-                            <span class="status-name">Mensagem não entregue</span>
-                            <div class="status-right"><span class="status-pct pct-fail" id="pct-f-msg">—</span><span class="status-count count-fail" id="det-f-msg">—</span></div>
-                        </div>
-                        <div class="status-item" style="border-left: 3px solid var(--danger);">
-                            <span class="status-name">Não entregue pela Meta</span>
-                            <div class="status-right"><span class="status-pct pct-fail" id="pct-f-meta">—</span><span class="status-count count-fail" id="det-f-meta">—</span></div>
-                        </div>
-                        <div class="status-item" style="border-left: 3px solid var(--danger);">
-                            <span class="status-name">Erro experimento Meta</span>
-                            <div class="status-right"><span class="status-pct pct-fail" id="pct-f-exp">—</span><span class="status-count count-fail" id="det-f-exp">—</span></div>
-                        </div>
-                        <div class="status-item" style="border-left: 3px solid var(--danger);">
-                            <span class="status-name">Falha Genérica</span>
-                            <div class="status-right"><span class="status-pct pct-fail" id="pct-f-gen">—</span><span class="status-count count-fail" id="det-f-gen">—</span></div>
-                        </div>
+                        <div class="status-item"><span class="status-name">Entregue</span><div class="status-right"><span class="status-pct pct-success" id="pct-entregue">—</span><span class="status-count count-success" id="det-entregue">—</span></div></div>
+                        <div class="status-item"><span class="status-name">Enviado</span><div class="status-right"><span class="status-pct pct-success" id="pct-enviado">—</span><span class="status-count count-success" id="det-enviado">—</span></div></div>
+                        <div class="status-item"><span class="status-name">Visualizado</span><div class="status-right"><span class="status-pct pct-success" id="pct-visualizado">—</span><span class="status-count count-success" id="det-visualizado">—</span></div></div>
+                        <div class="status-item"><span class="status-name">Respondido</span><div class="status-right"><span class="status-pct pct-success" id="pct-respondido">—</span><span class="status-count count-success" id="det-respondido">—</span></div></div>
+                        <div class="status-item" style="border-left:3px solid var(--danger);"><span class="status-name">Mensagem não entregue</span><div class="status-right"><span class="status-pct pct-fail" id="pct-f-msg">—</span><span class="status-count count-fail" id="det-f-msg">—</span></div></div>
+                        <div class="status-item" style="border-left:3px solid var(--danger);"><span class="status-name">Não entregue pela Meta</span><div class="status-right"><span class="status-pct pct-fail" id="pct-f-meta">—</span><span class="status-count count-fail" id="det-f-meta">—</span></div></div>
+                        <div class="status-item" style="border-left:3px solid var(--danger);"><span class="status-name">Erro experimento Meta</span><div class="status-right"><span class="status-pct pct-fail" id="pct-f-exp">—</span><span class="status-count count-fail" id="det-f-exp">—</span></div></div>
+                        <div class="status-item" style="border-left:3px solid var(--danger);"><span class="status-name">Falha Genérica</span><div class="status-right"><span class="status-pct pct-fail" id="pct-f-gen">—</span><span class="status-count count-fail" id="det-f-gen">—</span></div></div>
                     </div>
                 </div>
-
-                <div class="card" style="display: flex; flex-direction: column;">
+                <div class="card" style="display:flex;flex-direction:column;">
                     <h3 class="section-title">Performance Relativa</h3>
-                    <div class="chart-box">
-                        <canvas id="mainChart"></canvas>
-                    </div>
-                    <div class="summary-badge">
-                        <p id="txt-resumo" style="font-size: 0.85rem; color: var(--text-main); font-weight: 500;"></p>
-                    </div>
-                    <button class="btn-analyze" style="margin-top: 1.5rem; background: var(--surface-light); color: var(--text-muted); box-shadow: none;" onclick="location.reload()">
-                        Nova Consulta
-                    </button>
+                    <div class="chart-box"><canvas id="mainChart"></canvas></div>
+                    <div class="summary-badge"><p id="txt-resumo" style="font-size:0.85rem;color:var(--text-main);font-weight:500;"></p></div>
+                    <button class="btn-analyze" style="margin-top:1.5rem;background:var(--surface-light);color:var(--text-muted);box-shadow:none;" onclick="location.reload()">Nova Consulta</button>
                     <button class="btn-pdf" id="btnPdf" onclick="exportarPDF()">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         Exportar PDF
@@ -607,27 +300,12 @@
 
             <div class="second-row">
                 <div class="card">
-                    <h3 class="section-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                        Volume por Status (Sucesso)
-                    </h3>
-                    <div class="bar-chart-box">
-                        <canvas id="barChart"></canvas>
-                    </div>
+                    <h3 class="section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Volume por Status (Sucesso)</h3>
+                    <div class="bar-chart-box"><canvas id="barChart"></canvas></div>
                 </div>
-
                 <div class="card">
-                    <h3 class="section-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                        Ranking de Falhas
-                    </h3>
-                    <div class="gargalo-badge">
-                        <span style="font-size:1.2rem">⚠️</span>
-                        <div>
-                            <div class="gargalo-label">Principal Gargalo</div>
-                            <div class="gargalo-name" id="gargalo-nome">—</div>
-                        </div>
-                    </div>
+                    <h3 class="section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Ranking de Falhas</h3>
+                    <div class="gargalo-badge"><span style="font-size:1.2rem">⚠️</span><div><div class="gargalo-label">Principal Gargalo</div><div class="gargalo-name" id="gargalo-nome">—</div></div></div>
                     <div class="status-list" id="rankingFalhas"></div>
                 </div>
             </div>
@@ -637,15 +315,13 @@
 
 <!-- ===================== SUPABASE ===================== -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-    // ── Supabase init ──────────────────────────────────────
     const SUPABASE_URL  = 'https://orlwhomkickjcuuxrszu.supabase.co';
     const SUPABASE_ANON = 'sb_publishable_8wdg6SsK8eewvZZbjp6T2w_S6Q-pl9b';
     const { createClient } = supabase;
     const _sb = createClient(SUPABASE_URL, SUPABASE_ANON);
 
-    // ── Auth helpers ───────────────────────────────────────
+    // ── UI helpers ─────────────────────────────────────────
     function showMsg(msg, type) {
         const el = document.getElementById('authMsg');
         el.textContent = msg;
@@ -656,74 +332,86 @@
         el.textContent = '';
         el.className = 'auth-msg';
     }
-
     function switchTab(tab) {
         clearMsg();
-        document.getElementById('loginForm').style.display  = tab === 'login'  ? 'flex' : 'none';
-        document.getElementById('signupForm').style.display = tab === 'signup' ? 'flex' : 'none';
-        document.getElementById('forgotForm').style.display = tab === 'forgot' ? 'flex' : 'none';
-        document.getElementById('authFooter').style.display = tab === 'forgot' ? 'none' : 'block';
+        ['login','signup','forgot','newpassword'].forEach(f => {
+            const el = document.getElementById(f + 'Form');
+            if (el) el.style.display = (f === tab) ? 'flex' : 'none';
+        });
+        const special = tab === 'forgot' || tab === 'newpassword';
+        document.getElementById('authTabs').style.display   = special ? 'none' : 'flex';
+        document.getElementById('authFooter').style.display = special ? 'none' : 'block';
         document.querySelectorAll('.auth-tab').forEach((t, i) => {
             t.classList.toggle('active', tab === 'login' ? i === 0 : tab === 'signup' ? i === 1 : false);
         });
     }
 
+    // ── Esqueci a senha ────────────────────────────────────
     async function doForgot() {
         const email = document.getElementById('forgotEmail').value.trim();
         if (!email) return showMsg('Digite seu e-mail cadastrado.', 'error');
-
         const btn = document.getElementById('btnForgot');
         btn.disabled = true; btn.textContent = 'Enviando...';
-
-        const { error } = await _sb.auth.resetPasswordForEmail(email, {
-            redirectTo: window.location.href
-        });
-
+        const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
         btn.disabled = false; btn.textContent = 'Enviar link de redefinição';
-
-        if (error) return showMsg('Erro ao enviar: ' + error.message, 'error');
-        showMsg('✅ Link enviado! Verifique sua caixa de entrada (e o spam).', 'success');
+        if (error) return showMsg('Erro: ' + error.message, 'error');
+        showMsg('✅ Link enviado! Verifique seu e-mail (e o spam).', 'success');
     }
 
+    // ── Salvar nova senha ──────────────────────────────────
+    async function doResetPassword() {
+        const pass    = document.getElementById('newPass').value;
+        const confirm = document.getElementById('newPassConfirm').value;
+        if (!pass || !confirm)  return showMsg('Preencha os dois campos.', 'error');
+        if (pass.length < 6)    return showMsg('A senha deve ter pelo menos 6 caracteres.', 'error');
+        if (pass !== confirm)   return showMsg('As senhas não coincidem.', 'error');
+        const btn = document.getElementById('btnReset');
+        btn.disabled = true; btn.textContent = 'Salvando...';
+        const { error } = await _sb.auth.updateUser({ password: pass });
+        btn.disabled = false; btn.textContent = 'Salvar nova senha';
+        if (error) return showMsg('Erro: ' + error.message, 'error');
+        showMsg('✅ Senha redefinida! Entrando...', 'success');
+        setTimeout(async () => {
+            window.location.hash = '';
+            const { data: { session } } = await _sb.auth.getSession();
+            if (session) enterApp(session.user.email);
+            else switchTab('login');
+        }, 1500);
+    }
 
+    // ── Login ──────────────────────────────────────────────
     async function doLogin() {
         const email = document.getElementById('loginEmail').value.trim();
         const pass  = document.getElementById('loginPass').value;
         if (!email || !pass) return showMsg('Preencha e-mail e senha.', 'error');
-
         const btn = document.getElementById('btnLogin');
         btn.disabled = true; btn.textContent = 'Entrando...';
-
-        const { error } = await _sb.auth.signInWithPassword({ email, password: pass });
-
+        const { data, error } = await _sb.auth.signInWithPassword({ email, password: pass });
         btn.disabled = false; btn.textContent = 'Entrar';
-
         if (error) return showMsg('E-mail ou senha incorretos.', 'error');
-        enterApp(email);
+        enterApp(data.user.email);
     }
 
+    // ── Cadastro ───────────────────────────────────────────
     async function doSignup() {
         const email = document.getElementById('signupEmail').value.trim();
         const pass  = document.getElementById('signupPass').value;
         if (!email || !pass) return showMsg('Preencha todos os campos.', 'error');
-        if (pass.length < 6)  return showMsg('A senha deve ter pelo menos 6 caracteres.', 'error');
-
+        if (pass.length < 6) return showMsg('A senha deve ter pelo menos 6 caracteres.', 'error');
         const btn = document.getElementById('btnSignup');
         btn.disabled = true; btn.textContent = 'Criando...';
-
         const { error } = await _sb.auth.signUp({ email, password: pass });
-
         btn.disabled = false; btn.textContent = 'Criar conta';
-
-        if (error) return showMsg('Erro ao criar conta: ' + error.message, 'error');
-        showMsg('Conta criada! Verifique seu e-mail para confirmar (ou entre já se a confirmação estiver desativada).', 'success');
+        if (error) return showMsg('Erro: ' + error.message, 'error');
+        showMsg('Conta criada! Entre com seu e-mail e senha.', 'success');
     }
 
+    // ── Logout ─────────────────────────────────────────────
     async function doLogout() {
         await _sb.auth.signOut();
         document.getElementById('appScreen').style.display  = 'none';
         document.getElementById('authScreen').style.display = 'flex';
-        clearMsg();
+        switchTab('login');
     }
 
     function enterApp(email) {
@@ -732,21 +420,28 @@
         document.getElementById('userEmailDisplay').textContent = email;
     }
 
-    // ── Restore session on load ────────────────────────────
+    // ── Inicialização: detecta recovery ou sessão existente ─
     (async () => {
+        // Escuta eventos de auth — captura PASSWORD_RECOVERY vindo do link do e-mail
+        _sb.auth.onAuthStateChange((event, session) => {
+            if (event === 'PASSWORD_RECOVERY') {
+                document.getElementById('appScreen').style.display  = 'none';
+                document.getElementById('authScreen').style.display = 'flex';
+                switchTab('newpassword');
+            }
+        });
+
+        // Se já tem sessão ativa (e não é recovery), entra direto
         const { data: { session } } = await _sb.auth.getSession();
-        if (session) {
+        if (session && !window.location.hash.includes('type=recovery')) {
             enterApp(session.user.email);
         }
     })();
 
-    // ── Dashboard logic ────────────────────────────────────
+    // ── Dashboard ──────────────────────────────────────────
     const inputIds = ['dist', 'campanha', 'csvFile'];
     inputIds.forEach(id => document.getElementById(id).addEventListener('change', () => {
-        const ok = inputIds.every(i => {
-            const el = document.getElementById(i);
-            return el.value || (el.files && el.files.length);
-        });
+        const ok = inputIds.every(i => { const el = document.getElementById(i); return el.value || (el.files && el.files.length); });
         document.getElementById('btnGo').disabled = !ok;
     }));
 
@@ -755,258 +450,126 @@
         if (this.files && this.files[0]) {
             display.innerHTML = '<span class="file-label">📄 Resultado:</span><span class="file-value"> ' + this.files[0].name + '</span>';
             display.classList.add('visible');
-        } else {
-            display.classList.remove('visible');
-        }
+        } else { display.classList.remove('visible'); }
     });
 
-    function normalize(str) {
-        return (str || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
-
-    function pct(v, total) {
-        if (!total) return '0.0%';
-        return ((v / total) * 100).toFixed(1) + '%';
-    }
+    function normalize(str) { return (str||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+    function pct(v, total) { if (!total) return '0.0%'; return ((v/total)*100).toFixed(1)+'%'; }
 
     function robustParse(text) {
-        const rows = [];
-        let curr = [], val = '', quotes = false;
-        for (let i = 0; i < text.length; i++) {
-            const char = text[i], next = text[i+1];
-            if (char === '"') {
-                if (quotes && next === '"') { val += '"'; i++; }
-                else { quotes = !quotes; }
-            } else if (char === ';' && !quotes) {
-                curr.push(val.trim()); val = '';
-            } else if ((char === '\n' || char === '\r') && !quotes) {
-                if (val || curr.length > 0) { curr.push(val.trim()); rows.push(curr); curr = []; val = ''; }
-            } else { val += char; }
+        const rows = []; let curr=[], val='', quotes=false;
+        for (let i=0;i<text.length;i++) {
+            const char=text[i], next=text[i+1];
+            if (char==='"') { if(quotes&&next==='"'){val+='"';i++;}else{quotes=!quotes;} }
+            else if (char===';'&&!quotes) { curr.push(val.trim());val=''; }
+            else if ((char==='\n'||char==='\r')&&!quotes) { if(val||curr.length>0){curr.push(val.trim());rows.push(curr);curr=[];val='';} }
+            else { val+=char; }
         }
-        if (curr.length > 0) { curr.push(val.trim()); rows.push(curr); }
+        if (curr.length>0){curr.push(val.trim());rows.push(curr);}
         return rows;
     }
 
-    let chart = null, barChart = null;
+    let chart=null, barChart=null;
 
     function processar() {
         const file = document.getElementById('csvFile').files[0];
         if (!file) return;
-
         const reader = new FileReader();
         reader.onload = function(e) {
             const data = robustParse(e.target.result);
-
-            if (data.length < 3) {
-                alert('CSV inválido ou muito pequeno. Verifique o arquivo e tente novamente.');
-                return;
-            }
-
-            const header = data[0].map(h => normalize(h.replace(/"/g, '')));
+            if (data.length<3) { alert('CSV inválido ou muito pequeno.'); return; }
+            const header = data[0].map(h=>normalize(h.replace(/"/g,'')));
             const sIdx = header.indexOf('status do envio');
-            if (sIdx === -1) return alert("Erro: Coluna 'Status do envio' não encontrada no CSV.");
-
-            const stats = { entregue: 0, enviado: 0, visualizado: 0, respondido: 0, f_msg: 0, f_meta: 0, f_exp: 0, f_gen: 0 };
-            const rows = data.slice(1).filter(r => r.length > sIdx);
-
+            if (sIdx===-1) return alert("Erro: Coluna 'Status do envio' não encontrada.");
+            const stats = {entregue:0,enviado:0,visualizado:0,respondido:0,f_msg:0,f_meta:0,f_exp:0,f_gen:0};
+            const rows = data.slice(1).filter(r=>r.length>sIdx);
             rows.forEach(row => {
                 const s = normalize(row[sIdx]);
-                if (s.includes("respondido"))                         stats.respondido++;
-                else if (s.includes("visualizado"))                   stats.visualizado++;
-                else if (s.includes("nao pode ser entregue"))         stats.f_msg++;
-                else if (s.includes("pela meta"))                     stats.f_meta++;
-                else if (s.includes("experimento"))                   stats.f_exp++;
-                else if (s.includes("entregue"))                      stats.entregue++;
-                else if (s.includes("enviado"))                       stats.enviado++;
-                else if (s !== "")                                    stats.f_gen++;
+                if (s.includes("respondido"))               stats.respondido++;
+                else if (s.includes("visualizado"))         stats.visualizado++;
+                else if (s.includes("nao pode ser entregue")) stats.f_msg++;
+                else if (s.includes("pela meta"))           stats.f_meta++;
+                else if (s.includes("experimento"))         stats.f_exp++;
+                else if (s.includes("entregue"))            stats.entregue++;
+                else if (s.includes("enviado"))             stats.enviado++;
+                else if (s!=="")                            stats.f_gen++;
             });
-
-            const total = rows.length;
-            const sucesso = stats.entregue + stats.enviado + stats.visualizado + stats.respondido;
-            const falha = stats.f_msg + stats.f_meta + stats.f_exp + stats.f_gen;
-
-            render(total, sucesso, falha, stats);
+            const total=rows.length, sucesso=stats.entregue+stats.enviado+stats.visualizado+stats.respondido, falha=stats.f_msg+stats.f_meta+stats.f_exp+stats.f_gen;
+            render(total,sucesso,falha,stats);
         };
         reader.readAsText(file);
     }
 
-    function render(total, sucesso, falha, det) {
-        document.getElementById('setup').style.display = 'none';
-        document.getElementById('results').style.display = 'block';
-
-        const taxa = total ? ((sucesso / total) * 100) : 0;
-
-        document.getElementById('res-total').innerText = total.toLocaleString('pt-BR');
-        document.getElementById('res-sucesso').innerText = sucesso.toLocaleString('pt-BR');
-        document.getElementById('res-falha').innerText = falha.toLocaleString('pt-BR');
-        document.getElementById('kpi-taxa-sucesso').innerText = taxa.toFixed(1) + '% do total';
-        document.getElementById('kpi-taxa-falha').innerText = (100 - taxa).toFixed(1) + '% do total';
-
-        let insightClass, insightIcon, insightLevel, insightMsg;
-        if (taxa > 90) {
-            insightClass = 'insight-excelente'; insightIcon = '🚀';
-            insightLevel = 'Performance Excelente';
-            insightMsg = 'Operação altamente eficiente. Taxa de sucesso acima do benchmark.';
-        } else if (taxa > 70) {
-            insightClass = 'insight-bom'; insightIcon = '✅';
-            insightLevel = 'Boa Performance';
-            insightMsg = 'Resultado consistente, mas há espaço para otimização da base.';
-        } else if (taxa > 50) {
-            insightClass = 'insight-atencao'; insightIcon = '⚠️';
-            insightLevel = 'Atenção';
-            insightMsg = 'Taxa mediana detectada. Revise a estratégia de disparo e qualidade da base.';
-        } else {
-            insightClass = 'insight-critico'; insightIcon = '🔴';
-            insightLevel = 'Crítico';
-            insightMsg = 'Alto índice de falha. Ação imediata necessária para evitar bloqueios.';
-        }
-
-        const banner = document.getElementById('insightBanner');
-        banner.className = `insight-banner ${insightClass}`;
-        banner.style.display = 'flex';
-        banner.innerHTML = `
-            <span class="insight-icon">${insightIcon}</span>
-            <div>
-                <div class="insight-level">${insightLevel}</div>
-                <div class="insight-text">${insightMsg}</div>
-            </div>
-            <div style="margin-left:auto; font-family:'Syne'; font-size:1.8rem; font-weight:800;">${taxa.toFixed(1)}%</div>
-        `;
-
-        const setStatus = (idVal, idPct, count) => {
-            document.getElementById(idVal).innerText = count.toLocaleString('pt-BR');
-            document.getElementById(idPct).innerText = pct(count, total);
-        };
-        setStatus('det-entregue',    'pct-entregue',    det.entregue);
-        setStatus('det-enviado',     'pct-enviado',     det.enviado);
-        setStatus('det-visualizado', 'pct-visualizado', det.visualizado);
-        setStatus('det-respondido',  'pct-respondido',  det.respondido);
-        setStatus('det-f-msg',       'pct-f-msg',       det.f_msg);
-        setStatus('det-f-meta',      'pct-f-meta',      det.f_meta);
-        setStatus('det-f-exp',       'pct-f-exp',       det.f_exp);
-        setStatus('det-f-gen',       'pct-f-gen',       det.f_gen);
-
-        const taxaViz  = det.entregue   ? ((det.visualizado / det.entregue)   * 100) : 0;
-        const taxaResp = det.visualizado ? ((det.respondido  / det.visualizado) * 100) : 0;
-
-        document.getElementById('funil-entregue').innerText     = det.entregue.toLocaleString('pt-BR');
-        document.getElementById('funil-entregue-pct').innerText = pct(det.entregue, total) + ' do total';
-        document.getElementById('funil-bar-entregue').style.width = Math.min(100, (det.entregue / total) * 100) + '%';
-        document.getElementById('funil-viz').innerText          = det.visualizado.toLocaleString('pt-BR');
-        document.getElementById('funil-viz-pct').innerText      = taxaViz.toFixed(1) + '% dos entregues';
-        document.getElementById('funil-bar-viz').style.width    = Math.min(100, taxaViz) + '%';
-        document.getElementById('funil-resp').innerText         = det.respondido.toLocaleString('pt-BR');
-        document.getElementById('funil-resp-pct').innerText     = taxaResp.toFixed(1) + '% dos visualizados';
-        document.getElementById('funil-bar-resp').style.width   = Math.min(100, taxaResp) + '%';
-
-        const distVal = document.getElementById('dist').value || '—';
-        const campVal = document.getElementById('campanha').value || '—';
-        document.getElementById('txt-resumo').innerHTML = `
-            <span style="color:var(--primary)">${distVal}</span> | 
-            <span style="color:var(--text-main)">${campVal}</span><br>
-            <span style="font-size: 1.2rem; font-weight: 800; color:var(--accent)">${taxa.toFixed(1)}%</span> de sucesso na operação.
-        `;
-
-        const ctx = document.getElementById('mainChart').getContext('2d');
-        if (chart) chart.destroy();
-        chart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Sucesso', 'Falha'],
-                datasets: [{ data: [sucesso, falha], backgroundColor: ['#00f2c3', '#ff4d4d'], hoverOffset: 20, borderWidth: 0, borderRadius: 10 }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', weight: '600', size: 12 } } } },
-                cutout: '78%'
-            }
-        });
-
-        const bCtx = document.getElementById('barChart').getContext('2d');
-        if (barChart) barChart.destroy();
-        barChart = new Chart(bCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Entregue', 'Enviado', 'Visualizado', 'Respondido'],
-                datasets: [{
-                    label: 'Registros',
-                    data: [det.entregue, det.enviado, det.visualizado, det.respondido],
-                    backgroundColor: ['rgba(0,242,195,0.7)', 'rgba(0,242,195,0.4)', 'rgba(99,102,241,0.7)', 'rgba(245,158,11,0.7)'],
-                    borderRadius: 8, borderSkipped: false
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { ticks: { color: '#94a3b8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-                    y: { ticks: { color: '#94a3b8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
-                }
-            }
-        });
-
-        const erros = [
-            { nome: 'Mensagem não entregue', valor: det.f_msg },
-            { nome: 'Não entregue pela Meta', valor: det.f_meta },
-            { nome: 'Erro experimento Meta', valor: det.f_exp },
-            { nome: 'Falha Genérica', valor: det.f_gen }
-        ].sort((a, b) => b.valor - a.valor);
-
-        document.getElementById('gargalo-nome').innerText = erros[0].valor > 0 ? erros[0].nome : 'Nenhuma falha detectada';
-        document.getElementById('rankingFalhas').innerHTML = erros.map((e, i) => `
-            <div class="status-item" style="border-left: 3px solid ${i === 0 && e.valor > 0 ? 'var(--danger)' : 'transparent'};">
-                <span class="status-name" style="display:flex; align-items:center; gap:6px;">
-                    <span style="color: var(--text-muted); font-size:0.8rem; min-width:16px;">${i+1}.</span>
-                    ${e.nome}
-                </span>
-                <div class="status-right">
-                    <span class="status-pct pct-fail">${pct(e.valor, falha || 1)}</span>
-                    <span class="status-count count-fail">${e.valor.toLocaleString('pt-BR')}</span>
-                </div>
-            </div>
-        `).join('');
+    function render(total,sucesso,falha,det) {
+        document.getElementById('setup').style.display='none';
+        document.getElementById('results').style.display='block';
+        const taxa=total?((sucesso/total)*100):0;
+        document.getElementById('res-total').innerText=total.toLocaleString('pt-BR');
+        document.getElementById('res-sucesso').innerText=sucesso.toLocaleString('pt-BR');
+        document.getElementById('res-falha').innerText=falha.toLocaleString('pt-BR');
+        document.getElementById('kpi-taxa-sucesso').innerText=taxa.toFixed(1)+'% do total';
+        document.getElementById('kpi-taxa-falha').innerText=(100-taxa).toFixed(1)+'% do total';
+        let iC,iI,iL,iM;
+        if(taxa>90){iC='insight-excelente';iI='🚀';iL='Performance Excelente';iM='Operação altamente eficiente. Taxa de sucesso acima do benchmark.';}
+        else if(taxa>70){iC='insight-bom';iI='✅';iL='Boa Performance';iM='Resultado consistente, mas há espaço para otimização da base.';}
+        else if(taxa>50){iC='insight-atencao';iI='⚠️';iL='Atenção';iM='Taxa mediana detectada. Revise a estratégia de disparo e qualidade da base.';}
+        else{iC='insight-critico';iI='🔴';iL='Crítico';iM='Alto índice de falha. Ação imediata necessária para evitar bloqueios.';}
+        const banner=document.getElementById('insightBanner');
+        banner.className=`insight-banner ${iC}`;banner.style.display='flex';
+        banner.innerHTML=`<span class="insight-icon">${iI}</span><div><div class="insight-level">${iL}</div><div class="insight-text">${iM}</div></div><div style="margin-left:auto;font-family:'Syne';font-size:1.8rem;font-weight:800;">${taxa.toFixed(1)}%</div>`;
+        const ss=(id,pId,c)=>{document.getElementById(id).innerText=c.toLocaleString('pt-BR');document.getElementById(pId).innerText=pct(c,total);};
+        ss('det-entregue','pct-entregue',det.entregue);ss('det-enviado','pct-enviado',det.enviado);
+        ss('det-visualizado','pct-visualizado',det.visualizado);ss('det-respondido','pct-respondido',det.respondido);
+        ss('det-f-msg','pct-f-msg',det.f_msg);ss('det-f-meta','pct-f-meta',det.f_meta);
+        ss('det-f-exp','pct-f-exp',det.f_exp);ss('det-f-gen','pct-f-gen',det.f_gen);
+        const tV=det.entregue?((det.visualizado/det.entregue)*100):0, tR=det.visualizado?((det.respondido/det.visualizado)*100):0;
+        document.getElementById('funil-entregue').innerText=det.entregue.toLocaleString('pt-BR');
+        document.getElementById('funil-entregue-pct').innerText=pct(det.entregue,total)+' do total';
+        document.getElementById('funil-bar-entregue').style.width=Math.min(100,(det.entregue/total)*100)+'%';
+        document.getElementById('funil-viz').innerText=det.visualizado.toLocaleString('pt-BR');
+        document.getElementById('funil-viz-pct').innerText=tV.toFixed(1)+'% dos entregues';
+        document.getElementById('funil-bar-viz').style.width=Math.min(100,tV)+'%';
+        document.getElementById('funil-resp').innerText=det.respondido.toLocaleString('pt-BR');
+        document.getElementById('funil-resp-pct').innerText=tR.toFixed(1)+'% dos visualizados';
+        document.getElementById('funil-bar-resp').style.width=Math.min(100,tR)+'%';
+        const dv=document.getElementById('dist').value||'—', cv=document.getElementById('campanha').value||'—';
+        document.getElementById('txt-resumo').innerHTML=`<span style="color:var(--primary)">${dv}</span> | <span style="color:var(--text-main)">${cv}</span><br><span style="font-size:1.2rem;font-weight:800;color:var(--accent)">${taxa.toFixed(1)}%</span> de sucesso na operação.`;
+        const ctx=document.getElementById('mainChart').getContext('2d');
+        if(chart)chart.destroy();
+        chart=new Chart(ctx,{type:'doughnut',data:{labels:['Sucesso','Falha'],datasets:[{data:[sucesso,falha],backgroundColor:['#00f2c3','#ff4d4d'],hoverOffset:20,borderWidth:0,borderRadius:10}]},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{family:'Plus Jakarta Sans',weight:'600',size:12}}}},cutout:'78%'}});
+        const bCtx=document.getElementById('barChart').getContext('2d');
+        if(barChart)barChart.destroy();
+        barChart=new Chart(bCtx,{type:'bar',data:{labels:['Entregue','Enviado','Visualizado','Respondido'],datasets:[{label:'Registros',data:[det.entregue,det.enviado,det.visualizado,det.respondido],backgroundColor:['rgba(0,242,195,0.7)','rgba(0,242,195,0.4)','rgba(99,102,241,0.7)','rgba(245,158,11,0.7)'],borderRadius:8,borderSkipped:false}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#94a3b8',font:{size:11}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#94a3b8',font:{size:11}},grid:{color:'rgba(255,255,255,0.04)'}}}}});
+        const erros=[{nome:'Mensagem não entregue',valor:det.f_msg},{nome:'Não entregue pela Meta',valor:det.f_meta},{nome:'Erro experimento Meta',valor:det.f_exp},{nome:'Falha Genérica',valor:det.f_gen}].sort((a,b)=>b.valor-a.valor);
+        document.getElementById('gargalo-nome').innerText=erros[0].valor>0?erros[0].nome:'Nenhuma falha detectada';
+        document.getElementById('rankingFalhas').innerHTML=erros.map((e,i)=>`<div class="status-item" style="border-left:3px solid ${i===0&&e.valor>0?'var(--danger)':'transparent'};"><span class="status-name" style="display:flex;align-items:center;gap:6px;"><span style="color:var(--text-muted);font-size:0.8rem;min-width:16px;">${i+1}.</span>${e.nome}</span><div class="status-right"><span class="status-pct pct-fail">${pct(e.valor,falha||1)}</span><span class="status-count count-fail">${e.valor.toLocaleString('pt-BR')}</span></div></div>`).join('');
     }
 
     async function exportarPDF() {
-        const btn = document.getElementById('btnPdf');
-        const originalHTML = btn.innerHTML;
-        btn.disabled = true; btn.classList.add('loading');
-        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Gerando...';
-
+        const btn=document.getElementById('btnPdf'), orig=btn.innerHTML;
+        btn.disabled=true;btn.classList.add('loading');
+        btn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Gerando...';
         try {
-            const target = document.getElementById('results');
-            const canvas = await html2canvas(target, { scale: 2, useCORS: true, backgroundColor: '#080a0f', logging: false, windowWidth: target.scrollWidth, windowHeight: target.scrollHeight });
-            const { jsPDF } = window.jspdf;
-            const imgData = canvas.toDataURL('image/png');
-            const pdfW = 297, pdfH = 210;
-            const ratio = Math.min(pdfW / canvas.width, pdfH / canvas.height);
-            const finalW = canvas.width * ratio, finalH = canvas.height * ratio;
-            const offsetX = (pdfW - finalW) / 2, offsetY = (pdfH - finalH) / 2;
-
-            const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-            pdf.setFillColor(8, 10, 15);
-            pdf.rect(0, 0, pdfW, pdfH, 'F');
-            pdf.setTextColor(0, 242, 195); pdf.setFontSize(10); pdf.setFont('helvetica', 'bold');
-            pdf.text('weON Analytics | Relatório de Performance de Disparo', 10, 8);
-            pdf.setTextColor(148, 163, 184); pdf.setFontSize(8); pdf.setFont('helvetica', 'normal');
-            pdf.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 10, 14);
-            const dist = document.getElementById('dist').value || '';
-            const camp = document.getElementById('campanha').value || '';
-            if (dist || camp) pdf.text(`Distribuidora: ${dist} | Campanha: ${camp}`, 10, 19);
-            pdf.addImage(imgData, 'PNG', offsetX, offsetY + 10, finalW, Math.min(finalH, pdfH - offsetY - 15));
-
-            const fileEl = document.getElementById('fileNameDisplay').querySelector('.file-value');
-            const csvName = fileEl ? fileEl.textContent.trim().replace('.csv', '') : 'disparo';
-            pdf.save(`weON_${dist || 'relatorio'}_${camp || 'campanha'}_${csvName}.pdf`);
-        } catch(err) {
-            alert('Erro ao gerar PDF. Tente novamente.');
-            console.error(err);
-        } finally {
-            btn.disabled = false; btn.classList.remove('loading');
-            btn.innerHTML = originalHTML;
-        }
+            const target=document.getElementById('results');
+            const canvas=await html2canvas(target,{scale:2,useCORS:true,backgroundColor:'#080a0f',logging:false,windowWidth:target.scrollWidth,windowHeight:target.scrollHeight});
+            const {jsPDF}=window.jspdf, imgData=canvas.toDataURL('image/png');
+            const pdfW=297,pdfH=210,ratio=Math.min(pdfW/canvas.width,pdfH/canvas.height);
+            const finalW=canvas.width*ratio,finalH=canvas.height*ratio,offsetX=(pdfW-finalW)/2,offsetY=(pdfH-finalH)/2;
+            const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+            pdf.setFillColor(8,10,15);pdf.rect(0,0,pdfW,pdfH,'F');
+            pdf.setTextColor(0,242,195);pdf.setFontSize(10);pdf.setFont('helvetica','bold');
+            pdf.text('weON Analytics | Relatório de Performance de Disparo',10,8);
+            pdf.setTextColor(148,163,184);pdf.setFontSize(8);pdf.setFont('helvetica','normal');
+            pdf.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`,10,14);
+            const dist=document.getElementById('dist').value||'', camp=document.getElementById('campanha').value||'';
+            if(dist||camp)pdf.text(`Distribuidora: ${dist} | Campanha: ${camp}`,10,19);
+            pdf.addImage(imgData,'PNG',offsetX,offsetY+10,finalW,Math.min(finalH,pdfH-offsetY-15));
+            const fileEl=document.getElementById('fileNameDisplay').querySelector('.file-value');
+            const csvName=fileEl?fileEl.textContent.trim().replace('.csv',''):'disparo';
+            pdf.save(`weON_${dist||'relatorio'}_${camp||'campanha'}_${csvName}.pdf`);
+        } catch(err){alert('Erro ao gerar PDF.');console.error(err);}
+        finally{btn.disabled=false;btn.classList.remove('loading');btn.innerHTML=orig;}
     }
 </script>
-
 </body>
 </html>
