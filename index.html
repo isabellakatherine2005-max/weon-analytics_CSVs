@@ -421,22 +421,37 @@
     }
 
     // ── Inicialização: detecta recovery ou sessão existente ─
-    (async () => {
-        // Escuta eventos de auth — captura PASSWORD_RECOVERY vindo do link do e-mail
-        _sb.auth.onAuthStateChange((event, session) => {
-            if (event === 'PASSWORD_RECOVERY') {
-                document.getElementById('appScreen').style.display  = 'none';
-                document.getElementById('authScreen').style.display = 'flex';
-                switchTab('newpassword');
-            }
-        });
+   (async () => {
+    // Detecta token de recovery na URL antes de qualquer coisa
+    const hashParams = new URLSearchParams(window.location.hash.replace('#', ''));
+    const accessToken  = hashParams.get('access_token');
+    const refreshToken = hashParams.get('refresh_token');
+    const type         = hashParams.get('type');
 
-        // Se já tem sessão ativa (e não é recovery), entra direto
-        const { data: { session } } = await _sb.auth.getSession();
-        if (session && !window.location.hash.includes('type=recovery')) {
-            enterApp(session.user.email);
+    if (accessToken && type === 'recovery') {
+        // Injeta a sessão com o token do link de e-mail
+        await _sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+        document.getElementById('appScreen').style.display  = 'none';
+        document.getElementById('authScreen').style.display = 'flex';
+        switchTab('newpassword');
+        return; // Para aqui — não precisa checar sessão normal
+    }
+
+    // Escuta eventos de auth normais (login, logout)
+    _sb.auth.onAuthStateChange((event, session) => {
+        if (event === 'PASSWORD_RECOVERY') {
+            document.getElementById('appScreen').style.display  = 'none';
+            document.getElementById('authScreen').style.display = 'flex';
+            switchTab('newpassword');
         }
-    })();
+    });
+
+    // Sessão já existente → entra direto no dashboard
+    const { data: { session } } = await _sb.auth.getSession();
+    if (session) {
+        enterApp(session.user.email);
+    }
+})();
 
     // ── Dashboard ──────────────────────────────────────────
     const inputIds = ['dist', 'campanha', 'csvFile'];
