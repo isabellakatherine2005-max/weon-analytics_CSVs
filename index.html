@@ -1344,35 +1344,45 @@ function resetAnalysis() {
 }
 
 // ── HISTORY ────────────────────────────────
-let historyData = JSON.parse(sessionStorage.getItem('orbit_history')||'[]');
-function saveHistory(total,sucesso,falha) {
-  const taxa = total?((sucesso/total)*100):0;
-  historyData.unshift({
-    company: document.getElementById('companyName').value||'—',
-    campaign: document.getElementById('campaignName').value||'—',
-    date: new Date().toLocaleString('pt-BR'),
-    total, sucesso, falha, taxa: taxa.toFixed(1)
-  });
-  sessionStorage.setItem('orbit_history', JSON.stringify(historyData));
-  toast('Análise salva no histórico');
-  updateDashboard();
-}
-
-function renderHistory() {
+async function renderHistory() {
   const grid = document.getElementById('historyGrid');
-  if (!historyData.length) {
-    grid.innerHTML=`<div class="history-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Nenhuma análise realizada ainda</p><p style="font-size:0.78rem;margin-top:4px">As análises aparecerão aqui após serem processadas.</p></div>`;
+
+  const doisMesesAtras = new Date();
+  doisMesesAtras.setMonth(doisMesesAtras.getMonth() - 2);
+
+  const { data, error } = await _sb
+    .from('historico')
+    .select('*')
+    .gt('created_at', doisMesesAtras.toISOString())
+    .order('created_at', { ascending: false });
+
+  if (error || !data || data.length === 0) {
+    grid.innerHTML = `<div class="history-empty">
+      <p>Nenhuma análise realizada ainda</p>
+    </div>`;
     return;
   }
-  grid.innerHTML = historyData.map(h=>{
+
+  grid.innerHTML = data.map(h => {
     const t = parseFloat(h.taxa);
-    const bc = t>70?'good':t>50?'warn':'bad';
-    const bl = t>70?'Sucesso '+h.taxa+'%':t>50?'Atenção '+h.taxa+'%':'Crítico '+h.taxa+'%';
-    return `<div class="history-card">
-      <div class="hc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="hc-info"><div class="hc-company">${h.company}</div><div class="hc-campaign">${h.campaign} · ${h.total.toLocaleString('pt-BR')} registros</div></div>
-      <div class="hc-meta"><div class="hc-date">${h.date}</div><div class="hc-badge ${bc}">${bl}</div></div>
-    </div>`;
+    const bc = t > 70 ? 'good' : t > 50 ? 'warn' : 'bad';
+    const bl = t > 70 ? 'Sucesso ' + h.taxa + '%' :
+              t > 50 ? 'Atenção ' + h.taxa + '%' :
+                       'Crítico ' + h.taxa + '%';
+
+    const dataFormatada = new Date(h.created_at).toLocaleString('pt-BR');
+
+    return `
+      <div class="history-card">
+        <div class="hc-info">
+          <div class="hc-company">${h.company}</div>
+          <div class="hc-campaign">${h.campaign} · ${h.total.toLocaleString('pt-BR')} registros</div>
+        </div>
+        <div class="hc-meta">
+          <div class="hc-date">${dataFormatada}</div>
+          <div class="hc-badge ${bc}">${bl}</div>
+        </div>
+      </div>`;
   }).join('');
 }
 
