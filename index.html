@@ -34,12 +34,10 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
 /* ─── SCROLLBAR ─────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
-
 /* ─── AUTH ─────────────────────────────────── */
 #authScreen {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
@@ -119,18 +117,15 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .reset-hint { display: flex; gap: 0.8rem; padding: 0.9rem 1rem; background: var(--accent-dim); border: 1px solid var(--accent-glow); border-radius: 12px; margin-bottom: 0.5rem; align-items: flex-start; }
 .reset-hint-title { font-size: 0.85rem; font-weight: 700; color: var(--accent); }
 .reset-hint-body { font-size: 0.78rem; color: var(--text-muted); }
-
 /* ─── APP LAYOUT ─────────────────────────────── */
 #appScreen { display: none; height: 100vh; }
 .app-layout { display: flex; height: 100vh; overflow: hidden; }
-
 /* ─── SIDEBAR ─────────────────────────────────── */
 .sidebar {
   width: var(--sidebar-w); flex-shrink: 0; background: var(--surface);
   border-right: 1px solid var(--border); display: flex; flex-direction: column;
   overflow: hidden; transition: width 0.3s ease;
 }
-
 .sidebar-brand {
   padding: 1.4rem 1rem 1.2rem;
   border-bottom: 1px solid var(--border);
@@ -160,7 +155,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   margin-top: 5px;
   font-family: var(--font-body);
 }
-
 .sidebar-nav { flex: 1; padding: 1rem 0.75rem; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
 .nav-section-label { font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--text-muted); padding: 0.8rem 0.6rem 0.4rem; font-family: var(--font-body); }
 .nav-item {
@@ -173,7 +167,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .nav-item.active { background: var(--primary-dim); color: var(--primary); border-color: rgba(99,102,241,0.2); }
 .nav-item svg { flex-shrink: 0; opacity: 0.8; }
 .nav-item.active svg { opacity: 1; }
-
 .sidebar-profile { padding: 1rem 0.75rem; border-top: 1px solid var(--border); flex-shrink: 0; }
 .profile-card { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.2s; }
 .profile-card:hover { background: var(--surface-2); }
@@ -185,7 +178,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .profile-role { font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-body); }
 .btn-logout-sm { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; border-radius: 6px; transition: color 0.2s; }
 .btn-logout-sm:hover { color: var(--danger); }
-
 /* ─── MAIN CONTENT ─────────────────────────────── */
 .main-area { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 .topbar { padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--surface); flex-shrink: 0; }
@@ -202,10 +194,8 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .btn-theme { background:var(--surface-2); border:1px solid var(--border-2); color:var(--text-muted); width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; flex-shrink:0; }
 .btn-theme:hover { background:var(--surface-3); color:var(--text); border-color:var(--primary); }
-
 .page { display: none; flex: 1; padding: 2rem; }
 .page.active { display: block; animation: fadeUp 0.35s ease; }
-
 /* ─── CARDS ─────────────────────────────────── */
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; }
 .card-sm { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); }
@@ -220,7 +210,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   gap: 8px;
   letter-spacing: 0.01em;
 }
-
 /* ─── DASHBOARD PAGE ─────────────────────────── */
 .dash-welcome { margin-bottom: 2rem; }
 .dash-greeting {
@@ -238,7 +227,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 }
 .dash-date { font-size: 0.83rem; color: var(--text-muted); margin-top: 0.35rem; font-weight: 400; font-family: var(--font-body); letter-spacing: 0.01em; }
 .dash-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.1rem; font-family: var(--font-body); }
-
 .kpi-grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -267,13 +255,11 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .kpi-dash-card.kd-b::before { background: var(--accent); }
 .kpi-dash-card.kd-c::before { background: var(--warning); }
 .kpi-dash-card.kd-d::before { background: var(--danger); }
-
 .kdc-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
 .kd-a .kdc-icon { background: var(--primary-dim); color: var(--primary); }
 .kd-b .kdc-icon { background: var(--accent-dim); color: var(--accent); }
 .kd-c .kdc-icon { background: var(--warning-dim); color: var(--warning); }
 .kd-d .kdc-icon { background: var(--danger-dim); color: var(--danger); }
-
 .kdc-badge {
   position: absolute; top: 1.2rem; right: 1.2rem;
   font-size: 0.65rem; font-weight: 600;
@@ -291,7 +277,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   letter-spacing: -0.01em;
 }
 .kdc-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem; font-weight: 400; font-family: var(--font-body); }
-
 .dash-quick-title { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 1rem; font-family: var(--font-body); }
 .dash-quick-grid {
   display: grid;
@@ -318,14 +303,12 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .qc-title { font-size: 0.9rem; font-weight: 600; color: var(--text); font-family: var(--font-body); }
 .qc-desc { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-body); }
 .qc-arrow { color: var(--primary); font-size: 1rem; display: block; font-family: var(--font-body); }
-
 .dash-charts-row {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 1.2rem;
 }
 .chart-wrap { height: 220px; }
-
 /* ─── ANALYSIS PAGE ─────────────────────────────── */
 .analysis-form { display: grid; grid-template-columns: 1fr 1fr 1.2fr auto; gap: 1.2rem; align-items: end; }
 .form-group { display: flex; flex-direction: column; }
@@ -354,7 +337,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 }
 .btn-analyze:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
 .btn-analyze:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
-
 /* Results */
 .results-area { margin-top: 2rem; display: none; animation: fadeUp 0.5s ease; }
 .results-area.visible { display: block; }
@@ -369,7 +351,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .kpi-card.k-success .kpi-value { color: var(--accent); }
 .kpi-card.k-fail .kpi-value { color: var(--danger); }
 .kpi-sub { font-size: 0.76rem; color: var(--text-muted); font-weight: 400; font-family: var(--font-body); }
-
 .insight-bar { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-radius: var(--radius-sm); border: 1px solid; margin-bottom: 1.5rem; }
 .insight-bar .pct-big { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; margin-left: auto; letter-spacing: -0.02em; font-style: italic; }
 .insight-bar .ilabel { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; font-family: var(--font-body); }
@@ -378,7 +359,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .ib-good { background: rgba(99,102,241,0.05); border-color: rgba(99,102,241,0.25); color: var(--primary); }
 .ib-warn { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.25); color: var(--warning); }
 .ib-crit { background: rgba(245,101,101,0.05); border-color: rgba(245,101,101,0.25); color: var(--danger); }
-
 .results-grid { display: grid; grid-template-columns: 1fr 380px; gap: 1.2rem; margin-bottom: 1.2rem; }
 .results-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
 .status-list { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -392,7 +372,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .badge-fail { background: var(--danger-dim); color: var(--danger); }
 .status-num { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
 .s-green { color: var(--accent); } .s-red { color: var(--danger); }
-
 .funil-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem; }
 .funil-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.1rem; text-align: center; position: relative; }
 .funil-arrow { position: absolute; right: -0.85rem; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--text-muted); z-index:1; }
@@ -401,13 +380,11 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .funil-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; font-family: var(--font-body); }
 .funil-bar { height: 4px; border-radius: 2px; margin-top: 0.7rem; background: var(--border); overflow: hidden; }
 .funil-fill { height: 100%; border-radius: 2px; transition: width 0.9s ease; }
-
 .chart-box { height: 200px; }
 .chart-box-lg { height: 220px; }
 .gargalo-badge { display: flex; gap: 0.8rem; align-items: center; padding: 0.85rem 1rem; background: var(--danger-dim); border: 1px solid rgba(245,101,101,0.2); border-radius: 10px; margin-bottom: 1rem; }
 .gargalo-tag { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--danger); font-family: var(--font-body); }
 .gargalo-name { font-size: 0.95rem; font-weight: 500; color: var(--text); font-family: var(--font-body); }
-
 .actions-row { display: flex; gap: 0.8rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .btn-secondary {
   flex: 1; min-width: 140px; display: flex; align-items: center; justify-content: center; gap: 7px;
@@ -419,7 +396,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .btn-export:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .btn-new { background: var(--surface-2); color: var(--text-muted); border-color: var(--border-2); }
 .btn-new:hover { color: var(--text); border-color: var(--border-2); background: var(--surface-3); }
-
 /* ─── HISTORY PAGE ─────────────────────────────── */
 .history-grid { display: flex; flex-direction: column; gap: 0.8rem; }
 .history-card {
@@ -441,7 +417,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .history-empty { text-align: center; padding: 4rem 2rem; color: var(--text-muted); font-family: var(--font-body); }
 .history-empty svg { opacity: 0.25; margin-bottom: 1rem; }
 .history-empty p { font-size: 0.9rem; }
-
 /* ─── PROFILE PAGE ─────────────────────────────── */
 .profile-page { max-width: 640px; }
 .profile-header-section { display: flex; align-items: center; gap: 2rem; padding: 2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); margin-bottom: 1.5rem; }
@@ -455,7 +430,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .icon-opt:hover, .icon-opt.selected { border-color: var(--primary); background: var(--primary-dim); }
 .profile-name-area h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; font-style: italic; }
 .profile-name-area p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; font-family: var(--font-body); }
-
 .pref-list { display: flex; flex-direction: column; gap: 0.6rem; }
 .pref-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.1rem; background: var(--surface-2); border-radius: var(--radius-sm); border: 1px solid var(--border); }
 .pref-label { font-size: 0.85rem; font-weight: 500; font-family: var(--font-body); }
@@ -467,20 +441,17 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.25s; }
 .toggle input:checked ~ .toggle-thumb { transform: translateX(18px); }
 .profile-section-title { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-muted); margin: 1.5rem 0 0.75rem; font-family: var(--font-body); }
-
 .save-bar { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
 .btn-save { background: linear-gradient(135deg, var(--primary), #4338ca); color: #fff; border: none; padding: 0.7rem 1.8rem; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
 .btn-save:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .btn-cancel { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border-2); padding: 0.7rem 1.2rem; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
 .btn-cancel:hover { color: var(--text); }
-
 /* ─── TOAST ─────────────────────────────────── */
 .toast-area { position: fixed; bottom: 1.5rem; right: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; z-index: 9999; pointer-events: none; }
 .toast { background: var(--surface); border: 1px solid var(--border-2); border-radius: 12px; padding: 0.8rem 1.2rem; font-size: 0.83rem; font-weight: 500; display: flex; align-items: center; gap: 0.7rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: toastIn 0.3s ease; pointer-events: auto; font-family: var(--font-body); }
 .toast.t-success { border-color: rgba(0,242,195,0.3); color: var(--accent); }
 .toast.t-error { border-color: rgba(245,101,101,0.3); color: var(--danger); }
 @keyframes toastIn { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform:none; } }
-
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media (max-width: 900px) {
   .sidebar { width: 56px; }
@@ -499,8 +470,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 </style>
 </head>
 <body>
-
-<!-- ═══════════════ AUTH ═══════════════ -->
 <div id="authScreen">
   <div class="sky-canvas">
     <div class="stars stars-1"></div>
@@ -522,54 +491,40 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
         <button class="auth-tab" onclick="switchTab('signup')">Criar conta</button>
       </div>
       <div id="authMsg" class="auth-msg"></div>
-
-      <!-- LOGIN -->
       <div id="loginForm" class="auth-form">
         <div><label class="field-label">E-mail</label><input class="field-input" type="email" id="loginEmail" placeholder="seu@email.com"></div>
         <div><label class="field-label">Senha</label><input class="field-input" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
         <button class="btn-primary" id="btnLogin" onclick="doLogin()">Entrar</button>
       </div>
-
-      <!-- SIGNUP -->
       <div id="signupForm" class="auth-form" style="display:none">
         <div><label class="field-label">E-mail</label><input class="field-input" type="email" id="signupEmail" placeholder="seu@email.com"></div>
         <div><label class="field-label">Senha</label><input class="field-input" type="password" id="signupPass" placeholder="Mín. 6 caracteres" onkeydown="if(event.key==='Enter')doSignup()"></div>
         <button class="btn-primary" id="btnSignup" onclick="doSignup()">Criar conta</button>
       </div>
-
-      <!-- FORGOT -->
       <div id="forgotForm" class="auth-form" style="display:none">
         <div><label class="field-label">E-mail cadastrado</label><input class="field-input" type="email" id="forgotEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')doForgot()"></div>
         <button class="btn-primary" id="btnForgot" onclick="doForgot()">Enviar link de redefinição</button>
         <button onclick="switchTab('login')" style="background:none;border:none;color:var(--text-muted);font-family:var(--font-body);font-size:0.82rem;cursor:pointer;text-align:center;">← Voltar ao login</button>
       </div>
-
-      <!-- NEW PASSWORD -->
       <div id="newpasswordForm" class="auth-form" style="display:none">
         <div class="reset-hint"><span style="font-size:1.3rem">🔐</span><div><div class="reset-hint-title">Redefinir senha</div><div class="reset-hint-body">Digite e confirme sua nova senha.</div></div></div>
         <div><label class="field-label">Nova senha</label><input class="field-input" type="password" id="newPass" placeholder="Mín. 6 caracteres"></div>
         <div><label class="field-label">Confirmar</label><input class="field-input" type="password" id="newPassConfirm" placeholder="Repita a senha" onkeydown="if(event.key==='Enter')doResetPassword()"></div>
         <button class="btn-accent" id="btnReset" onclick="doResetPassword()">Salvar nova senha</button>
       </div>
-
       <div class="auth-footer" id="authFooter">
         <a onclick="switchTab('forgot')">Esqueci minha senha</a> &nbsp;·&nbsp; Acesso restrito · Orbit
       </div>
     </div>
   </div>
 </div>
-
-<!-- ═══════════════ APP ═══════════════ -->
 <div id="appScreen">
   <div class="app-layout">
-
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-brand" onclick="showPage('dashboard')" title="Ir para início">
         <span class="brand-name">Orbit</span>
         <span class="brand-sub">Enterprise Analytics</span>
       </div>
-
       <nav class="sidebar-nav">
         <span class="nav-section-label">Principal</span>
         <div class="nav-item active" id="nav-dashboard" onclick="showPage('dashboard')">
@@ -584,14 +539,12 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>Histórico</span>
         </div>
-
         <span class="nav-section-label" style="margin-top:0.5rem">Conta</span>
         <div class="nav-item" id="nav-profile" onclick="showPage('profile')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <span>Perfil</span>
         </div>
       </nav>
-
       <div class="sidebar-profile">
         <div class="profile-card" onclick="showPage('profile')">
           <div class="avatar-wrap" id="sideAvatarWrap">
@@ -608,8 +561,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
         </div>
       </div>
     </aside>
-
-    <!-- MAIN -->
     <div class="main-area">
       <div class="topbar">
         <div class="topbar-title" id="topbarTitle">Dashboard</div>
@@ -620,17 +571,12 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
           </button>
         </div>
       </div>
-
-      <!-- PAGE: DASHBOARD -->
       <div class="page active" id="page-dashboard">
-        <!-- Welcome header -->
         <div class="dash-welcome">
           <h1 class="dash-greeting" id="dashGreeting">Olá! <span class="wave">👋</span></h1>
           <p class="dash-date" id="dashDate"></p>
           <p class="dash-subtitle">Resumo das suas análises</p>
         </div>
-
-        <!-- KPI row -->
         <div class="kpi-grid-4">
           <div class="kpi-dash-card kd-a">
             <span class="kdc-badge pos" id="dash-badge-a">+12%</span>
@@ -665,8 +611,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
             <div class="kdc-label">Taxa Média de Entrega</div>
           </div>
         </div>
-
-        <!-- Quick actions -->
         <p class="dash-quick-title">Ações Rápidas</p>
         <div class="dash-quick-grid">
           <div class="quick-card" onclick="showPage('analysis')">
@@ -700,8 +644,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
             <span class="qc-arrow">→</span>
           </div>
         </div>
-
-        <!-- Charts row -->
         <div class="dash-charts-row">
           <div class="card">
             <h3 class="section-title">
@@ -721,8 +663,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
           </div>
         </div>
       </div>
-
-      <!-- PAGE: ANALYSIS -->
       <div class="page" id="page-analysis">
         <div class="card" style="margin-bottom:1.5rem">
           <h3 class="section-title">
@@ -752,17 +692,13 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
             </div>
           </div>
         </div>
-
-        <!-- RESULTS -->
         <div class="results-area" id="resultsArea">
           <div id="insightBar" class="insight-bar" style="display:none"></div>
-
           <div class="kpi-row">
             <div class="card kpi-card k-total"><div class="kpi-label">Total de Clientes</div><div class="kpi-value" id="r-total">—</div></div>
             <div class="card kpi-card k-success"><div class="kpi-label">Sucesso de Envio</div><div class="kpi-value" id="r-sucesso">—</div><div class="kpi-sub" id="r-taxa-s"></div></div>
             <div class="card kpi-card k-fail"><div class="kpi-label">Falha de Envio</div><div class="kpi-value" id="r-falha">—</div><div class="kpi-sub" id="r-taxa-f"></div></div>
           </div>
-
           <div class="card" style="margin-bottom:1.2rem">
             <h3 class="section-title">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
@@ -791,7 +727,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
               </div>
             </div>
           </div>
-
           <div class="results-grid">
             <div class="card">
               <h3 class="section-title">
@@ -806,917 +741,4 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
                 <div class="status-row fail-row"><span class="status-name-txt">Mensagem não entregue</span><div class="status-vals"><span class="badge-pct badge-fail" id="p-fmsg">—</span><span class="status-num s-red" id="n-fmsg">—</span></div></div>
                 <div class="status-row fail-row"><span class="status-name-txt">Não entregue pela Meta</span><div class="status-vals"><span class="badge-pct badge-fail" id="p-fmeta">—</span><span class="status-num s-red" id="n-fmeta">—</span></div></div>
                 <div class="status-row fail-row"><span class="status-name-txt">Erro experimento Meta</span><div class="status-vals"><span class="badge-pct badge-fail" id="p-fexp">—</span><span class="status-num s-red" id="n-fexp">—</span></div></div>
-                <div class="status-row fail-row"><span class="status-name-txt">Falha Genérica</span><div class="status-vals"><span class="badge-pct badge-fail" id="p-fgen">—</span><span class="status-num s-red" id="n-fgen">—</span></div></div>
-              </div>
-            </div>
-            <div class="card" style="display:flex;flex-direction:column;gap:0.8rem">
-              <h3 class="section-title">Performance Relativa</h3>
-              <div class="chart-box-lg"><canvas id="mainChart"></canvas></div>
-              <div class="card-sm" style="padding:1rem">
-                <p id="txt-resumo" style="font-size:0.83rem;color:var(--text);font-weight:400;line-height:1.6;font-family:var(--font-body)"></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="results-grid-2">
-            <div class="card">
-              <h3 class="section-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                Volume por Status (Sucesso)
-              </h3>
-              <div class="chart-box"><canvas id="barChart"></canvas></div>
-            </div>
-            <div class="card">
-              <h3 class="section-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Ranking de Falhas
-              </h3>
-              <div class="gargalo-badge"><span style="font-size:1.1rem">⚠️</span><div><div class="gargalo-tag">Principal gargalo</div><div class="gargalo-name" id="gargalo-nome">—</div></div></div>
-              <div class="status-list" id="rankingFalhas"></div>
-            </div>
-          </div>
-
-          <div class="actions-row">
-            <button class="btn-secondary btn-export" id="btnPdf" onclick="exportarPDF()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Exportar PDF
-            </button>
-            <button class="btn-secondary btn-new" onclick="resetAnalysis()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
-              Nova Consulta
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PAGE: HISTORY -->
-      <div class="page" id="page-history">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
-          <div>
-            <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;font-style:italic;letter-spacing:0.01em">Histórico de Análises</h2>
-            <p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;font-family:var(--font-body)">Todas as requisições realizadas nesta sessão</p>
-          </div>
-        </div>
-        <div class="history-grid" id="historyGrid">
-          <div class="history-empty">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <p>Nenhuma análise realizada ainda</p>
-            <p style="font-size:0.78rem;margin-top:4px">As análises aparecerão aqui após serem processadas.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PAGE: PROFILE -->
-      <div class="page" id="page-profile">
-        <div class="profile-page">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;font-style:italic;letter-spacing:0.01em;margin-bottom:1.5rem">Perfil</h2>
-
-          <div class="profile-header-section">
-            <div class="avatar-upload" onclick="document.getElementById('avatarFileInput').click()">
-              <div class="avatar-big" id="profileAvatarBig">
-                <img id="profileAvatarImg" src="" alt="">
-                <span id="profileAvatarInit">?</span>
-              </div>
-              <div class="avatar-overlay">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              </div>
-              <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
-            </div>
-            <div>
-              <div class="profile-name-area">
-                <h2 id="profileDisplayName">—</h2>
-                <p id="profileDisplayEmail">—</p>
-              </div>
-              <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.8rem;font-family:var(--font-body)">Clique na foto para alterar</p>
-              <div class="avatar-icons-grid" id="iconGrid"></div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-bottom:1.2rem">
-            <h3 class="section-title">Informações Pessoais</h3>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="form-group">
-                <label class="form-label">Nome completo</label>
-                <input class="form-input" type="text" id="profileFullName" placeholder="Seu nome">
-              </div>
-              <div class="form-group">
-                <label class="form-label">E-mail</label>
-                <input class="form-input" type="email" id="profileEmail" placeholder="seu@email.com" readonly style="opacity:0.6;cursor:not-allowed">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Empresa</label>
-                <input class="form-input" type="text" id="profileCompany" placeholder="Nome da empresa">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Cargo</label>
-                <input class="form-input" type="text" id="profileRole" placeholder="Seu cargo">
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3 class="section-title">Preferências</h3>
-            <div class="pref-list">
-              <div class="pref-item">
-                <div><div class="pref-label">Notificações</div><div class="pref-desc">Receber alertas de análise concluída</div></div>
-                <label class="toggle"><input type="checkbox" id="pref-notif" checked><span class="toggle-track"></span><span class="toggle-thumb"></span></label>
-              </div>
-              <div class="pref-item">
-                <div><div class="pref-label">Exportação automática</div><div class="pref-desc">Gerar PDF ao finalizar análise</div></div>
-                <label class="toggle"><input type="checkbox" id="pref-auto-pdf"><span class="toggle-track"></span><span class="toggle-thumb"></span></label>
-              </div>
-              <div class="pref-item">
-                <div><div class="pref-label">Modo compacto</div><div class="pref-desc">Exibir resultados condensados</div></div>
-                <label class="toggle"><input type="checkbox" id="pref-compact"><span class="toggle-track"></span><span class="toggle-thumb"></span></label>
-              </div>
-            </div>
-          </div>
-
-          <div class="save-bar">
-            <button class="btn-save" onclick="saveProfile()">Salvar alterações</button>
-            <button class="btn-cancel" onclick="loadProfileFromStorage()">Cancelar</button>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /main-area -->
-  </div><!-- /app-layout -->
-</div><!-- /appScreen -->
-
-<!-- TOAST AREA -->
-<div class="toast-area" id="toastArea"></div>
-
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL  = 'https://orlwhomkickjcuuxrszu.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_8wdg6SsK8eewvZZbjp6T2w_S6Q-pl9b';
-const _sb = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON
-
-// ── TOAST ─────────────────────────────────
-function toast(msg, type='success') {
-  const area = document.getElementById('toastArea');
-  const el = document.createElement('div');
-  el.className = `toast t-${type}`;
-  el.innerHTML = `<span>${type==='success'?'✓':'✕'}</span> ${msg}`;
-  area.appendChild(el);
-  setTimeout(() => el.remove(), 3500);
-}
-
-// ── AUTH HELPERS ───────────────────────────
-function showMsg(msg, type) {
-  const el = document.getElementById('authMsg');
-  el.textContent = msg; el.className = 'auth-msg ' + type;
-}
-function clearMsg() { const el = document.getElementById('authMsg'); el.textContent = ''; el.className = 'auth-msg'; }
-
-function switchTab(tab) {
-  clearMsg();
-  ['login','signup','forgot','newpassword'].forEach(f => {
-    const el = document.getElementById(f+'Form');
-    if (el) el.style.display = (f===tab)?'flex':'none';
-  });
-  const special = tab==='forgot'||tab==='newpassword';
-  document.getElementById('authTabs').style.display   = special?'none':'flex';
-  document.getElementById('authFooter').style.display = special?'none':'block';
-  document.querySelectorAll('.auth-tab').forEach((t,i) => {
-    t.classList.toggle('active', tab==='login'?i===0:tab==='signup'?i===1:false);
-  });
-}
-
-async function doForgot() {
-  const email = document.getElementById('forgotEmail').value.trim();
-  if (!email) return showMsg('Digite seu e-mail.', 'error');
-  const btn = document.getElementById('btnForgot'); btn.disabled=true; btn.textContent='Enviando...';
-  const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
-  btn.disabled=false; btn.textContent='Enviar link de redefinição';
-  if (error) return showMsg('Erro: '+error.message,'error');
-  showMsg('✅ Link enviado! Verifique seu e-mail.','success');
-}
-
-async function doResetPassword() {
-  const pass = document.getElementById('newPass').value;
-  const confirm = document.getElementById('newPassConfirm').value;
-  if (!pass||!confirm) return showMsg('Preencha os dois campos.','error');
-  if (pass.length<6)   return showMsg('Mínimo 6 caracteres.','error');
-  if (pass!==confirm)  return showMsg('As senhas não coincidem.','error');
-  const btn = document.getElementById('btnReset'); btn.disabled=true; btn.textContent='Salvando...';
-  const { error } = await _sb.auth.updateUser({ password: pass });
-  btn.disabled=false; btn.textContent='Salvar nova senha';
-  if (error) return showMsg('Erro: '+error.message,'error');
-  showMsg('✅ Senha redefinida! Entrando...','success');
-  setTimeout(async ()=>{ window.location.hash=''; const {data:{session}}=await _sb.auth.getSession(); if(session)enterApp(session.user.email); else switchTab('login'); }, 1500);
-}
-
-async function doLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPass').value;
-  if (!email||!pass) return showMsg('Preencha e-mail e senha.','error');
-  const btn = document.getElementById('btnLogin'); btn.disabled=true; btn.textContent='Entrando...';
-  const { data, error } = await _sb.auth.signInWithPassword({ email, password: pass });
-  btn.disabled=false; btn.textContent='Entrar';
-  if (error) return showMsg('E-mail ou senha incorretos.','error');
-  enterApp(data.user.email);
-}
-
-async function doSignup() {
-  const email = document.getElementById('signupEmail').value.trim();
-  const pass  = document.getElementById('signupPass').value;
-  if (!email||!pass) return showMsg('Preencha todos os campos.','error');
-  if (pass.length<6)  return showMsg('Mínimo 6 caracteres.','error');
-  const btn = document.getElementById('btnSignup'); btn.disabled=true; btn.textContent='Criando...';
-  const { error } = await _sb.auth.signUp({ email, password: pass });
-  btn.disabled=false; btn.textContent='Criar conta';
-  if (error) return showMsg('Erro: '+error.message,'error');
-  showMsg('Conta criada! Entre com seu e-mail e senha.','success');
-}
-
-async function doLogout() {
-  await _sb.auth.signOut();
-  document.getElementById('appScreen').style.display='none';
-  document.getElementById('authScreen').style.display='flex';
-  switchTab('login');
-}
-
-function enterApp(email) {
-  document.getElementById('authScreen').style.display='none';
-  document.getElementById('appScreen').style.display='block';
-  document.getElementById('sideProfileName').textContent = email.split('@')[0];
-  updateSidebarAvatar();
-  loadProfileFromStorage(email);
-  renderHistory();
-  updateDashboard(email);
-  showPage('dashboard');
-}
-
-// ── INIT ───────────────────────────────────
-(async () => {
-  const hashParams = new URLSearchParams(window.location.hash.replace('#',''));
-  const accessToken = hashParams.get('access_token');
-  const refreshToken = hashParams.get('refresh_token');
-  const type = hashParams.get('type');
-  if (accessToken && type==='recovery') {
-    await _sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
-    document.getElementById('appScreen').style.display='none';
-    document.getElementById('authScreen').style.display='flex';
-    switchTab('newpassword');
-    return;
-  }
-  _sb.auth.onAuthStateChange((event) => {
-    if (event==='PASSWORD_RECOVERY') { document.getElementById('appScreen').style.display='none'; document.getElementById('authScreen').style.display='flex'; switchTab('newpassword'); }
-  });
-  const { data: { session } } = await _sb.auth.getSession();
-  if (session) enterApp(session.user.email);
-})();
-
-// ── NAV ────────────────────────────────────
-const pageTitles = { dashboard:'Dashboard', analysis:'Análise de Campanha', history:'Histórico', profile:'Perfil' };
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('nav-'+id)?.classList.add('active');
-  document.getElementById('topbarTitle').textContent = pageTitles[id]||'Orbit';
-  if (id==='history') renderHistory();
-  if (id==='dashboard') updateDashboard();
-}
-
-// ── DASHBOARD ──────────────────────────────
-let dashLineChart = null, dashBarChart = null;
-
-function getGreeting() {
-  const h = new Date().getHours();
-  if (h < 12) return 'Bom dia';
-  if (h < 18) return 'Boa tarde';
-  return 'Boa noite';
-}
-
-function updateDashboard(email) {
-  // Greeting
-  const profile = JSON.parse(localStorage.getItem('orbit_profile')||'{}');
-  const name = profile.fullName || (email ? email.split('@')[0] : (profile.email ? profile.email.split('@')[0] : ''));
-  const firstName = name ? name.split(' ')[0] : '';
-  document.getElementById('dashGreeting').innerHTML =
-    `${getGreeting()}${firstName ? ', ' + firstName : ''}! <span class="wave">👋</span>`;
-
-  // Date
-  const now = new Date();
-  const opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
-  const dateStr = now.toLocaleDateString('pt-BR', opts);
-  document.getElementById('dashDate').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-
-  // KPI counters from history
-  const hist = JSON.parse(sessionStorage.getItem('orbit_history')||'[]');
-  const totalAnl = hist.length;
-  const uniqueCamp = new Set(hist.map(h=>h.campaign)).size;
-  const uniqueCSV = totalAnl;
-  const avgTaxa = totalAnl ? (hist.reduce((s,h)=>s+parseFloat(h.taxa||0),0)/totalAnl).toFixed(1)+'%' : '—';
-  const taxaNum = totalAnl ? parseFloat(hist.reduce((s,h)=>s+parseFloat(h.taxa||0),0)/totalAnl) : null;
-
-  document.getElementById('dash-total-anl').textContent = totalAnl || '—';
-  document.getElementById('dash-total-camp').textContent = uniqueCamp || '—';
-  document.getElementById('dash-total-csv').textContent = uniqueCSV || '—';
-  document.getElementById('dash-taxa-media').textContent = avgTaxa;
-
-  const taxaBadge = document.getElementById('dash-taxa-badge');
-  if (taxaNum !== null) {
-    taxaBadge.className = 'kdc-badge ' + (taxaNum >= 70 ? 'pos' : 'neg');
-    taxaBadge.textContent = taxaNum >= 70 ? 'Boa' : 'Atenção';
-  } else {
-    taxaBadge.textContent = '—';
-    taxaBadge.className = 'kdc-badge';
-  }
-
-  const tickColor = '#94a3b8';
-  const gridColor = 'rgba(255,255,255,0.04)';
-
-  const lineLabels = hist.length
-    ? hist.slice(0,7).reverse().map((_,i) => `#${i+1}`)
-    : ['Out','Nov','Dez','Jan','Fev','Mar','Abr'];
-  const lineData = hist.length
-    ? hist.slice(0,7).reverse().map(h=>parseFloat(h.taxa)||0)
-    : [62, 58, 65, 70, 68, 74, 78];
-
-  const lCtx = document.getElementById('dashLineChart').getContext('2d');
-  if (dashLineChart) dashLineChart.destroy();
-  dashLineChart = new Chart(lCtx, {
-    type: 'line',
-    data: {
-      labels: lineLabels,
-      datasets: [{
-        data: lineData,
-        borderColor: '#6366f1',
-        backgroundColor: 'rgba(99,102,241,0.12)',
-        borderWidth: 2.5,
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: '#6366f1',
-        pointRadius: 4,
-        pointHoverRadius: 6,
-      }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { color: gridColor } },
-        y: { ticks: { color: tickColor, font: { size: 10 }, callback: v => v+'%' }, grid: { color: gridColor }, min: 0, max: 100 }
-      }
-    }
-  });
-
-  const barLabels = hist.length
-    ? hist.slice(0,6).reverse().map((h,i)=>`CMP-${String(i+1).padStart(2,'0')}`)
-    : ['CMP-01','CMP-02','CMP-03','CMP-04','CMP-05','CMP-06'];
-  const barData = hist.length
-    ? hist.slice(0,6).reverse().map(h=>parseFloat(h.taxa)||0)
-    : [38, 72, 45, 88, 65, 91];
-  const barColors = barData.map(v => v >= 70 ? 'rgba(0,242,195,0.75)' : v >= 50 ? 'rgba(245,158,11,0.75)' : 'rgba(245,101,101,0.75)');
-
-  const bCtx = document.getElementById('dashBarChart').getContext('2d');
-  if (dashBarChart) dashBarChart.destroy();
-  dashBarChart = new Chart(bCtx, {
-    type: 'bar',
-    data: {
-      labels: barLabels,
-      datasets: [{
-        data: barData,
-        backgroundColor: barColors,
-        borderRadius: 8,
-        borderSkipped: false,
-      }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { color: gridColor } },
-        y: { ticks: { color: tickColor, font: { size: 10 }, callback: v => v+'%' }, grid: { color: gridColor }, min: 0, max: 100 }
-      }
-    }
-  });
-}
-
-// ── FILE INPUT ─────────────────────────────
-const csvInput = document.getElementById('csvFile');
-csvInput.addEventListener('change', function() {
-  const label = document.getElementById('fileLabel');
-  const txt   = document.getElementById('fileLabelTxt');
-  if (this.files && this.files[0]) {
-    txt.textContent = this.files[0].name;
-    label.classList.add('has-file');
-  } else {
-    txt.textContent = 'Importar arquivo CSV';
-    label.classList.remove('has-file');
-  }
-  checkForm();
-});
-['companyName','campaignName'].forEach(id => {
-  document.getElementById(id).addEventListener('input', checkForm);
-});
-function checkForm() {
-  const company  = document.getElementById('companyName').value.trim();
-  const campaign = document.getElementById('campaignName').value.trim();
-  const file     = document.getElementById('csvFile').files[0];
-  document.getElementById('btnGo').disabled = !(company && campaign && file);
-}
-
-// ── CSV / PARSE ────────────────────────────
-function normalize(str) { return (str||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
-function pct(v,total)   { return total ? ((v/total)*100).toFixed(1)+'%' : '0.0%'; }
-
-function robustParse(text) {
-  const rows=[]; let curr=[],val='',quotes=false;
-  for (let i=0;i<text.length;i++) {
-    const ch=text[i], nx=text[i+1];
-    if (ch==='"'){if(quotes&&nx==='"'){val+='"';i++;}else{quotes=!quotes;}}
-    else if(ch===';'&&!quotes){curr.push(val.trim());val='';}
-    else if((ch==='\n'||ch==='\r')&&!quotes){if(val||curr.length>0){curr.push(val.trim());rows.push(curr);curr=[];val='';}}
-    else{val+=ch;}
-  }
-  if(curr.length>0){curr.push(val.trim());rows.push(curr);}
-  return rows;
-}
-
-let chartMain=null, chartBar=null;
-
-function processar() {
-  const file = document.getElementById('csvFile').files[0]; if (!file) return;
-  const btn = document.getElementById('btnGo'); btn.disabled=true; btn.textContent='Processando...';
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    btn.disabled=false; btn.textContent='Analisar Performance';
-    const data = robustParse(e.target.result);
-    if (data.length<3) return toast('CSV inválido ou muito pequeno.','error');
-    const header = data[0].map(h=>normalize(h.replace(/"/g,'')));
-    const sIdx = header.indexOf('status do envio');
-    if (sIdx===-1) return toast("Coluna 'Status do envio' não encontrada.",'error');
-    const stats={entregue:0,enviado:0,visualizado:0,respondido:0,f_msg:0,f_meta:0,f_exp:0,f_gen:0};
-    const rows = data.slice(1).filter(r=>r.length>sIdx);
-    rows.forEach(row => {
-      const s = normalize(row[sIdx]);
-      if (s.includes('respondido'))               stats.respondido++;
-      else if (s.includes('visualizado'))         stats.visualizado++;
-      else if (s.includes('nao pode ser entregue')) stats.f_msg++;
-      else if (s.includes('pela meta'))           stats.f_meta++;
-      else if (s.includes('experimento'))         stats.f_exp++;
-      else if (s.includes('entregue'))            stats.entregue++;
-      else if (s.includes('enviado'))             stats.enviado++;
-      else if (s!=='')                            stats.f_gen++;
-    });
-    const total=rows.length;
-    const sucesso=stats.entregue+stats.enviado+stats.visualizado+stats.respondido;
-    const falha=stats.f_msg+stats.f_meta+stats.f_exp+stats.f_gen;
-    render(total,sucesso,falha,stats);
-    saveHistory(total,sucesso,falha);
-  };
-  reader.readAsText(file);
-}
-
-function render(total,sucesso,falha,det) {
-  const taxa = total?((sucesso/total)*100):0;
-  document.getElementById('r-total').textContent = total.toLocaleString('pt-BR');
-  document.getElementById('r-sucesso').textContent = sucesso.toLocaleString('pt-BR');
-  document.getElementById('r-falha').textContent = falha.toLocaleString('pt-BR');
-  document.getElementById('r-taxa-s').textContent = taxa.toFixed(1)+'% do total';
-  document.getElementById('r-taxa-f').textContent = (100-taxa).toFixed(1)+'% do total';
-
-  let iC,iI,iL,iM;
-  if(taxa>90){iC='ib-excellent';iI='🚀';iL='Performance Excelente';iM='Operação altamente eficiente. Taxa acima do benchmark.';}
-  else if(taxa>70){iC='ib-good';iI='✅';iL='Boa Performance';iM='Resultado consistente, mas há espaço para otimização da base.';}
-  else if(taxa>50){iC='ib-warn';iI='⚠️';iL='Atenção';iM='Taxa mediana detectada. Revise a estratégia de disparo e qualidade da base.';}
-  else{iC='ib-crit';iI='🔴';iL='Crítico';iM='Alto índice de falha. Ação imediata necessária para evitar bloqueios.';}
-
-  const ib = document.getElementById('insightBar');
-  ib.className=`insight-bar ${iC}`; ib.style.display='flex';
-  ib.innerHTML=`<span style="font-size:1.3rem">${iI}</span><div><div class="ilabel">${iL}</div><div class="itext">${iM}</div></div><div class="pct-big">${taxa.toFixed(1)}%</div>`;
-
-  const set=(nId,pId,c)=>{ document.getElementById(nId).textContent=c.toLocaleString('pt-BR'); document.getElementById(pId).textContent=pct(c,total); };
-  set('n-entregue','p-entregue',det.entregue); set('n-enviado','p-enviado',det.enviado);
-  set('n-visualizado','p-visualizado',det.visualizado); set('n-respondido','p-respondido',det.respondido);
-  set('n-fmsg','p-fmsg',det.f_msg); set('n-fmeta','p-fmeta',det.f_meta);
-  set('n-fexp','p-fexp',det.f_exp); set('n-fgen','p-fgen',det.f_gen);
-
-  const tV=det.entregue?((det.visualizado/det.entregue)*100):0;
-  const tR=det.visualizado?((det.respondido/det.visualizado)*100):0;
-  document.getElementById('f-entregue').textContent=det.entregue.toLocaleString('pt-BR');
-  document.getElementById('f-entregue-p').textContent=pct(det.entregue,total)+' do total';
-  document.getElementById('fb-entregue').style.width=Math.min(100,(det.entregue/total)*100)+'%';
-  document.getElementById('f-viz').textContent=det.visualizado.toLocaleString('pt-BR');
-  document.getElementById('f-viz-p').textContent=tV.toFixed(1)+'% dos entregues';
-  document.getElementById('fb-viz').style.width=Math.min(100,tV)+'%';
-  document.getElementById('f-resp').textContent=det.respondido.toLocaleString('pt-BR');
-  document.getElementById('f-resp-p').textContent=tR.toFixed(1)+'% dos visualizados';
-  document.getElementById('fb-resp').style.width=Math.min(100,tR)+'%';
-
-  const comp=document.getElementById('companyName').value||'—';
-  const camp=document.getElementById('campaignName').value||'—';
-  document.getElementById('txt-resumo').innerHTML=
-    `<strong style="color:var(--primary)">${comp}</strong> · <strong style="color:var(--text)">${camp}</strong><br>
-     <span style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--accent);font-style:italic">${taxa.toFixed(1)}%</span> de sucesso na operação. ${sucesso.toLocaleString('pt-BR')} envios bem-sucedidos de ${total.toLocaleString('pt-BR')} total.`;
-
-  const ctx=document.getElementById('mainChart').getContext('2d');
-  if(chartMain)chartMain.destroy();
-  chartMain=new Chart(ctx,{type:'doughnut',data:{labels:['Sucesso','Falha'],datasets:[{data:[sucesso,falha],backgroundColor:['#00f2c3','#f56565'],hoverOffset:16,borderWidth:0,borderRadius:8}]},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{family:'DM Sans',weight:'500',size:11}}}},cutout:'76%'}});
-
-  const bCtx=document.getElementById('barChart').getContext('2d');
-  if(chartBar)chartBar.destroy();
-  chartBar=new Chart(bCtx,{type:'bar',data:{labels:['Entregue','Enviado','Visualizado','Respondido'],datasets:[{data:[det.entregue,det.enviado,det.visualizado,det.respondido],backgroundColor:['rgba(0,242,195,0.7)','rgba(0,242,195,0.4)','rgba(99,102,241,0.7)','rgba(245,158,11,0.7)'],borderRadius:8,borderSkipped:false}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#94a3b8',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}});
-
-  const erros=[{nome:'Mensagem não entregue',valor:det.f_msg},{nome:'Não entregue pela Meta',valor:det.f_meta},{nome:'Erro experimento Meta',valor:det.f_exp},{nome:'Falha Genérica',valor:det.f_gen}].sort((a,b)=>b.valor-a.valor);
-  document.getElementById('gargalo-nome').textContent = erros[0].valor>0?erros[0].nome:'Nenhuma falha detectada';
-  document.getElementById('rankingFalhas').innerHTML = erros.map((e,i)=>`
-    <div class="status-row${i===0&&e.valor>0?' fail-row':''}">
-      <span class="status-name-txt"><span style="color:var(--text-muted);font-size:0.78rem;margin-right:6px">${i+1}.</span>${e.nome}</span>
-      <div class="status-vals"><span class="badge-pct badge-fail">${pct(e.valor,falha||1)}</span><span class="status-num s-red">${e.valor.toLocaleString('pt-BR')}</span></div>
-    </div>`).join('');
-
-  document.getElementById('resultsArea').classList.add('visible');
-}
-
-function resetAnalysis() {
-  document.getElementById('resultsArea').classList.remove('visible');
-  document.getElementById('companyName').value='';
-  document.getElementById('campaignName').value='';
-  document.getElementById('csvFile').value='';
-  document.getElementById('fileLabelTxt').textContent='Importar arquivo CSV';
-  document.getElementById('fileLabel').classList.remove('has-file');
-  document.getElementById('insightBar').style.display='none';
-  checkForm();
-}
-
-// ── HISTORY ────────────────────────────────
-let historyData = JSON.parse(sessionStorage.getItem('orbit_history')||'[]');
-function saveHistory(total,sucesso,falha) {
-  const taxa = total?((sucesso/total)*100):0;
-  historyData.unshift({
-    company: document.getElementById('companyName').value||'—',
-    campaign: document.getElementById('campaignName').value||'—',
-    date: new Date().toLocaleString('pt-BR'),
-    total, sucesso, falha, taxa: taxa.toFixed(1)
-  });
-  sessionStorage.setItem('orbit_history', JSON.stringify(historyData));
-  toast('Análise salva no histórico');
-  updateDashboard();
-}
-
-function renderHistory() {
-  const grid = document.getElementById('historyGrid');
-  if (!historyData.length) {
-    grid.innerHTML=`<div class="history-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><p>Nenhuma análise realizada ainda</p><p style="font-size:0.78rem;margin-top:4px">As análises aparecerão aqui após serem processadas.</p></div>`;
-    return;
-  }
-  grid.innerHTML = historyData.map(h=>{
-    const t = parseFloat(h.taxa);
-    const bc = t>70?'good':t>50?'warn':'bad';
-    const bl = t>70?'Sucesso '+h.taxa+'%':t>50?'Atenção '+h.taxa+'%':'Crítico '+h.taxa+'%';
-    return `<div class="history-card">
-      <div class="hc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="hc-info"><div class="hc-company">${h.company}</div><div class="hc-campaign">${h.campaign} · ${h.total.toLocaleString('pt-BR')} registros</div></div>
-      <div class="hc-meta"><div class="hc-date">${h.date}</div><div class="hc-badge ${bc}">${bl}</div></div>
-    </div>`;
-  }).join('');
-}
-
-// ── PROFILE ────────────────────────────────
-const AVATAR_ICONS = ['👤','🎯','🚀','💼','🌟','📊','⚡','🔥','💡','🎪'];
-let selectedIcon = null;
-
-function buildIconGrid() {
-  const grid = document.getElementById('iconGrid');
-  grid.innerHTML = AVATAR_ICONS.map((ic)=>`<div class="icon-opt" onclick="selectIcon('${ic}',this)">${ic}</div>`).join('');
-}
-buildIconGrid();
-
-function selectIcon(icon, el) {
-  selectedIcon = icon;
-  document.querySelectorAll('.icon-opt').forEach(e=>e.classList.remove('selected'));
-  el.classList.add('selected');
-  const img = document.getElementById('profileAvatarImg');
-  if (!img.style.display || img.style.display==='none') {
-    document.getElementById('profileAvatarInit').textContent = icon;
-    document.getElementById('sideAvatarInit').textContent = icon;
-  }
-}
-
-function handleAvatarUpload(event) {
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const src = e.target.result;
-    const pImg = document.getElementById('profileAvatarImg');
-    pImg.src=src; pImg.style.display='block';
-    document.getElementById('profileAvatarInit').style.display='none';
-    const sImg = document.getElementById('sideAvatarImg');
-    sImg.src=src; sImg.style.display='block';
-    document.getElementById('sideAvatarInit').style.display='none';
-    localStorage.setItem('orbit_avatar', src);
-  };
-  reader.readAsDataURL(file);
-}
-
-function updateSidebarAvatar() {
-  const saved = localStorage.getItem('orbit_avatar');
-  if (saved) {
-    const sImg = document.getElementById('sideAvatarImg');
-    sImg.src=saved; sImg.style.display='block';
-    document.getElementById('sideAvatarInit').style.display='none';
-  }
-}
-
-function loadProfileFromStorage(email) {
-  const data = JSON.parse(localStorage.getItem('orbit_profile')||'{}');
-  if (email) data.email = email;
-  document.getElementById('profileEmail').value       = data.email||'';
-  document.getElementById('profileFullName').value    = data.fullName||'';
-  document.getElementById('profileCompany').value     = data.company||'';
-  document.getElementById('profileRole').value        = data.role||'';
-  document.getElementById('profileDisplayName').textContent = data.fullName||data.email||'—';
-  document.getElementById('profileDisplayEmail').textContent = data.email||'';
-  document.getElementById('profileAvatarInit').textContent = data.icon || (data.email?data.email[0].toUpperCase():'?');
-  document.getElementById('sideAvatarInit').textContent    = data.icon || (data.email?data.email[0].toUpperCase():'?');
-  document.getElementById('sideProfileName').textContent   = data.fullName||(data.email?data.email.split('@')[0]:'—');
-  if (data.avatar) {
-    ['profileAvatarImg','sideAvatarImg'].forEach(id=>{const img=document.getElementById(id);img.src=data.avatar;img.style.display='block';});
-    document.getElementById('profileAvatarInit').style.display='none';
-    document.getElementById('sideAvatarInit').style.display='none';
-  }
-  const prefs = data.prefs||{};
-  document.getElementById('pref-notif').checked    = prefs.notif!==false;
-  document.getElementById('pref-auto-pdf').checked = !!prefs.autoPdf;
-  document.getElementById('pref-compact').checked  = !!prefs.compact;
-}
-
-function saveProfile() {
-  const email    = document.getElementById('profileEmail').value;
-  const fullName = document.getElementById('profileFullName').value.trim();
-  const company  = document.getElementById('profileCompany').value.trim();
-  const role     = document.getElementById('profileRole').value.trim();
-  const avatar   = localStorage.getItem('orbit_avatar')||null;
-  const icon     = selectedIcon;
-  const prefs = {
-    notif:    document.getElementById('pref-notif').checked,
-    autoPdf:  document.getElementById('pref-auto-pdf').checked,
-    compact:  document.getElementById('pref-compact').checked
-  };
-  const data = { email, fullName, company, role, avatar, icon, prefs };
-  localStorage.setItem('orbit_profile', JSON.stringify(data));
-  document.getElementById('profileDisplayName').textContent = fullName||email;
-  document.getElementById('sideProfileName').textContent   = fullName||(email?email.split('@')[0]:'—');
-  if (icon) { document.getElementById('profileAvatarInit').textContent=icon; document.getElementById('sideAvatarInit').textContent=icon; }
-  toast('Perfil atualizado com sucesso!');
-  updateDashboard();
-}
-
-// ── THEME TOGGLE ───────────────────────────
-function toggleTheme() {
-  const html = document.documentElement;
-  const isLight = html.getAttribute('data-theme') === 'light';
-  html.setAttribute('data-theme', isLight ? 'dark' : 'light');
-  localStorage.setItem('orbit_theme', isLight ? 'dark' : 'light');
-  const icon = document.getElementById('themeIcon');
-  if (isLight) {
-    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-  } else {
-    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-  }
-}
-(function() {
-  const saved = localStorage.getItem('orbit_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  if (saved === 'light') {
-    const icon = document.getElementById('themeIcon');
-    if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-  }
-})();
-
-// ── PDF EXPORT (clean light version) ──────
-async function exportarPDF() {
-  const btn = document.getElementById('btnPdf');
-  const orig = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Gerando...';
-
-  try {
-    const { jsPDF } = window.jspdf;
-
-    const comp    = document.getElementById('companyName').value || '—';
-    const camp    = document.getElementById('campaignName').value || '—';
-    const total   = document.getElementById('r-total').textContent;
-    const sucesso = document.getElementById('r-sucesso').textContent;
-    const falha   = document.getElementById('r-falha').textContent;
-    const taxaS   = document.getElementById('r-taxa-s').textContent;
-    const taxaF   = document.getElementById('r-taxa-f').textContent;
-
-    const statusItems = [
-      { label: 'Entregue',                  n: document.getElementById('n-entregue').textContent,   p: document.getElementById('p-entregue').textContent,   ok: true },
-      { label: 'Enviado',                   n: document.getElementById('n-enviado').textContent,    p: document.getElementById('p-enviado').textContent,    ok: true },
-      { label: 'Visualizado',               n: document.getElementById('n-visualizado').textContent,p: document.getElementById('p-visualizado').textContent,ok: true },
-      { label: 'Respondido',                n: document.getElementById('n-respondido').textContent, p: document.getElementById('p-respondido').textContent, ok: true },
-      { label: 'Mensagem não entregue',     n: document.getElementById('n-fmsg').textContent,       p: document.getElementById('p-fmsg').textContent,       ok: false },
-      { label: 'Não entregue pela Meta',    n: document.getElementById('n-fmeta').textContent,      p: document.getElementById('p-fmeta').textContent,      ok: false },
-      { label: 'Erro experimento Meta',     n: document.getElementById('n-fexp').textContent,       p: document.getElementById('p-fexp').textContent,       ok: false },
-      { label: 'Falha Genérica',            n: document.getElementById('n-fgen').textContent,       p: document.getElementById('p-fgen').textContent,       ok: false },
-    ];
-
-    const funil = [
-      { label: 'Entregue',    val: document.getElementById('f-entregue').textContent, sub: document.getElementById('f-entregue-p').textContent },
-      { label: 'Visualização',val: document.getElementById('f-viz').textContent,      sub: document.getElementById('f-viz-p').textContent },
-      { label: 'Resposta',    val: document.getElementById('f-resp').textContent,     sub: document.getElementById('f-resp-p').textContent },
-    ];
-
-    const gargalo = document.getElementById('gargalo-nome').textContent;
-    const insightEl = document.getElementById('insightBar');
-    const insightLabel = insightEl.querySelector('.ilabel')?.textContent || '';
-    const insightText  = insightEl.querySelector('.itext')?.textContent  || '';
-    const insightPct   = insightEl.querySelector('.pct-big')?.textContent || '';
-
-    const pdfW = 210;
-    const margin = 14;
-    const colW = pdfW - margin * 2;
-    let y = 0;
-
-    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
-    const pageH = 297;
-
-    const C = {
-      bg:      [255, 255, 255],
-      primary: [79,  70,  229],
-      accent:  [13,  148, 136],
-      danger:  [220, 38,  38 ],
-      warning: [217, 119, 6  ],
-      text:    [15,  23,  42 ],
-      muted:   [100, 116, 139],
-      border:  [226, 232, 240],
-      success_bg: [240, 253, 250],
-      fail_bg:    [254, 242, 242],
-    };
-
-    function addPage() {
-      pdf.addPage();
-      y = margin;
-    }
-    function checkY(need) { if (y + need > pageH - 10) addPage(); }
-
-    function setFont(size, weight='normal', color=C.text) {
-      pdf.setFontSize(size);
-      pdf.setFont('helvetica', weight);
-      pdf.setTextColor(...color);
-    }
-
-    function drawRect(x, ry, w, h, fillColor, strokeColor) {
-      if (fillColor) { pdf.setFillColor(...fillColor); pdf.rect(x, ry, w, h, 'F'); }
-      if (strokeColor) { pdf.setDrawColor(...strokeColor); pdf.setLineWidth(0.3); pdf.rect(x, ry, w, h, 'S'); }
-    }
-
-    function label(txt, x, ly, size=7, color=C.muted) {
-      setFont(size, 'bold', color);
-      pdf.text(txt.toUpperCase(), x, ly);
-    }
-
-    function value(txt, x, ly, size=14, color=C.text) {
-      setFont(size, 'bold', color);
-      pdf.text(txt, x, ly);
-    }
-
-    // ══ HEADER ══
-    pdf.setFillColor(...C.primary);
-    pdf.rect(0, 0, pdfW, 1.5, 'F');
-
-    y = 10;
-    setFont(18, 'bold', C.primary);
-    pdf.text('Orbit', margin, y);
-
-    setFont(8, 'normal', C.muted);
-    pdf.text('Analytics · Enterprise Edition', margin + 22, y);
-
-    setFont(7, 'normal', C.muted);
-    const dateStr = new Date().toLocaleString('pt-BR');
-    pdf.text('Gerado em: ' + dateStr, pdfW - margin, y, { align: 'right' });
-
-    y += 5;
-    pdf.setDrawColor(...C.border); pdf.setLineWidth(0.4);
-    pdf.line(margin, y, pdfW - margin, y);
-    y += 7;
-
-    setFont(14, 'bold', C.text);
-    pdf.text('Relatório de Performance de Disparo', margin, y);
-    y += 5;
-    setFont(9, 'normal', C.muted);
-    pdf.text(`Empresa: ${comp}   |   Campanha: ${camp}`, margin, y);
-    y += 9;
-
-    const bannerColor = insightPct ? (parseFloat(insightPct) > 70 ? C.success_bg : C.fail_bg) : C.success_bg;
-    const bannerText  = insightPct ? (parseFloat(insightPct) > 70 ? C.accent : C.danger) : C.accent;
-    checkY(18);
-    drawRect(margin, y, colW, 16, bannerColor, C.border);
-    setFont(7, 'bold', bannerText);
-    pdf.text(insightLabel.toUpperCase(), margin + 3, y + 5);
-    setFont(9, 'normal', C.text);
-    pdf.text(insightText, margin + 3, y + 10);
-    setFont(15, 'bold', bannerText);
-    pdf.text(insightPct, pdfW - margin - 3, y + 10, { align: 'right' });
-    y += 21;
-
-    checkY(24);
-    const kpiW = (colW - 4) / 3;
-    const kpiColors = [C.primary, C.accent, C.danger];
-    const kpiLabels = ['TOTAL DE CLIENTES', 'SUCESSO DE ENVIO', 'FALHA DE ENVIO'];
-    const kpiVals   = [total, sucesso, falha];
-    const kpiSubs   = ['', taxaS, taxaF];
-
-    kpiColors.forEach((col, i) => {
-      const kx = margin + i * (kpiW + 2);
-      drawRect(kx, y, kpiW, 20, [248, 250, 252], C.border);
-      pdf.setFillColor(...col); pdf.rect(kx, y + 19.5, kpiW, 1, 'F');
-      setFont(6, 'bold', C.muted);
-      pdf.text(kpiLabels[i], kx + 3, y + 5.5);
-      setFont(14, 'bold', col);
-      pdf.text(kpiVals[i], kx + 3, y + 14);
-      if (kpiSubs[i]) { setFont(7, 'normal', C.muted); pdf.text(kpiSubs[i], kx + 3, y + 18.5); }
-    });
-    y += 26;
-
-    checkY(36);
-    setFont(10, 'bold', C.text);
-    pdf.text('Funil de Conversão', margin, y);
-    y += 5;
-
-    const funilW = (colW - 4) / 3;
-    const funilColors = [C.accent, C.primary, [217, 119, 6]];
-    funil.forEach((f, i) => {
-      const fx = margin + i * (funilW + 2);
-      drawRect(fx, y, funilW, 20, [248, 250, 252], C.border);
-      setFont(6, 'bold', C.muted); pdf.text(f.label.toUpperCase(), fx + 3, y + 5);
-      setFont(14, 'bold', funilColors[i]); pdf.text(f.val, fx + 3, y + 14);
-      setFont(7, 'normal', C.muted); pdf.text(f.sub, fx + 3, y + 18.5);
-      if (i < 2) { setFont(10, 'normal', C.muted); pdf.text('→', fx + funilW + 0.3, y + 12); }
-    });
-    y += 27;
-
-    checkY(10);
-    setFont(10, 'bold', C.text);
-    pdf.text('Distribuição de Status', margin, y);
-    y += 5;
-
-    drawRect(margin, y, colW, 7, [241, 245, 249], C.border);
-    setFont(6.5, 'bold', C.muted);
-    pdf.text('STATUS', margin + 3, y + 4.5);
-    pdf.text('QUANTIDADE', margin + colW * 0.62, y + 4.5);
-    pdf.text('% DO TOTAL', margin + colW * 0.82, y + 4.5);
-    y += 7;
-
-    statusItems.forEach((item, i) => {
-      checkY(8);
-      const rowBg = i % 2 === 0 ? [255,255,255] : [248,250,252];
-      drawRect(margin, y, colW, 7.5, rowBg, C.border);
-      if (!item.ok) {
-        pdf.setFillColor(254, 242, 242);
-        pdf.rect(margin, y, 2.5, 7.5, 'F');
-      } else {
-        pdf.setFillColor(...C.accent);
-        pdf.rect(margin, y, 2.5, 7.5, 'F');
-      }
-      setFont(7.5, 'normal', C.text);
-      pdf.text(item.label, margin + 5, y + 5);
-      setFont(7.5, 'bold', item.ok ? C.accent : C.danger);
-      pdf.text(item.n, margin + colW * 0.62, y + 5);
-      setFont(7.5, 'normal', C.muted);
-      pdf.text(item.p, margin + colW * 0.82, y + 5);
-      y += 7.5;
-    });
-    y += 5;
-
-    checkY(28);
-    setFont(10, 'bold', C.text);
-    pdf.text('Principal Gargalo', margin, y);
-    y += 5;
-    drawRect(margin, y, colW, 12, C.fail_bg, C.border);
-    pdf.setFillColor(...C.danger); pdf.rect(margin, y, 2.5, 12, 'F');
-    setFont(6, 'bold', C.danger); pdf.text('PRINCIPAL GARGALO', margin + 5, y + 4.5);
-    setFont(9, 'bold', C.text); pdf.text(gargalo, margin + 5, y + 9.5);
-    y += 17;
-
-    const totalPages = pdf.internal.getNumberOfPages();
-    for (let i = 1; i <= totalPages; i++) {
-      pdf.setPage(i);
-      pdf.setFillColor(...C.primary); pdf.rect(0, pageH - 1.5, pdfW, 1.5, 'F');
-      setFont(7, 'normal', C.muted);
-      pdf.text(`Orbit Analytics · Relatório confidencial · Página ${i}/${totalPages}`, pdfW / 2, pageH - 5, { align: 'center' });
-    }
-
-    pdf.save(`Orbit_${comp}_${camp}.pdf`);
-    toast('PDF exportado com sucesso!');
-  } catch (err) {
-    toast('Erro ao gerar PDF.', 'error');
-    console.error(err);
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = orig;
-  }
-}
-</script>
-</body>
-</html>
+                <div class="status-row fail-row"><span class="status-name-txt">Falha Genérica</span><div class="status-vals"><span class="badge-pct badge-fail" id="p-fgen">—</span><span class="status
