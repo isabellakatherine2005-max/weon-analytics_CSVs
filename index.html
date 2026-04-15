@@ -623,14 +623,12 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 
       <!-- PAGE: DASHBOARD -->
       <div class="page active" id="page-dashboard">
-        <!-- Welcome header -->
         <div class="dash-welcome">
           <h1 class="dash-greeting" id="dashGreeting">Olá! <span class="wave">👋</span></h1>
           <p class="dash-date" id="dashDate"></p>
           <p class="dash-subtitle">Resumo das suas análises</p>
         </div>
 
-        <!-- KPI row -->
         <div class="kpi-grid-4">
           <div class="kpi-dash-card kd-a">
             <span class="kdc-badge pos" id="dash-badge-a">+12%</span>
@@ -666,7 +664,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
           </div>
         </div>
 
-        <!-- Quick actions -->
         <p class="dash-quick-title">Ações Rápidas</p>
         <div class="dash-quick-grid">
           <div class="quick-card" onclick="showPage('analysis')">
@@ -701,7 +698,6 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
           </div>
         </div>
 
-        <!-- Charts row -->
         <div class="dash-charts-row">
           <div class="card">
             <h3 class="section-title">
@@ -950,10 +946,13 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL  = 'https://orlwhomkickjcuuxrszu.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_8wdg6SsK8eewvZZbjp6T2w_S6Q-pl9b';
-const _sb = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON
+// ✅ CORREÇÃO 1: Substitua pelo valor da chave "anon" encontrada em
+// Supabase Dashboard → Project Settings → API → Project API keys → anon (public)
+// O formato correto começa com "eyJ..." e não com "sb_publishable_..."
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkZGdtcGtzaHdodWtyem9waXl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMzEzMTMsImV4cCI6MjA5MTYwNzMxM30.9W6zy7j97ZKQWSCugkuJKlwDJ-ckBqY7kykCUdgSdWY';
+
+// ✅ CORREÇÃO 2: Parêntese de fechamento do createClient() adicionado
+const _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 // ── TOAST ─────────────────────────────────
 function toast(msg, type='success') {
@@ -1094,20 +1093,17 @@ function getGreeting() {
 }
 
 function updateDashboard(email) {
-  // Greeting
   const profile = JSON.parse(localStorage.getItem('orbit_profile')||'{}');
   const name = profile.fullName || (email ? email.split('@')[0] : (profile.email ? profile.email.split('@')[0] : ''));
   const firstName = name ? name.split(' ')[0] : '';
   document.getElementById('dashGreeting').innerHTML =
     `${getGreeting()}${firstName ? ', ' + firstName : ''}! <span class="wave">👋</span>`;
 
-  // Date
   const now = new Date();
   const opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
   const dateStr = now.toLocaleDateString('pt-BR', opts);
   document.getElementById('dashDate').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
 
-  // KPI counters from history
   const hist = JSON.parse(sessionStorage.getItem('orbit_history')||'[]');
   const totalAnl = hist.length;
   const uniqueCamp = new Set(hist.map(h=>h.campaign)).size;
@@ -1319,7 +1315,7 @@ function render(total,sucesso,falha,det) {
 
   const ctx=document.getElementById('mainChart').getContext('2d');
   if(chartMain)chartMain.destroy();
-  chartMain=new Chart(ctx,{type:'doughnut',data:{labels:['Sucesso','Falha'],datasets:[{data:[sucesso,falha],backgroundColor:['#00f2c3','#f56565'],hoverOffset:16,borderWidth:0,borderRadius:8}]},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{family:'DM Sans',weight:'500',size:11}}}},cutout:'76%'}});
+  chartMain=new Chart(ctx,{type:'doughnut',data:{labels:['Sucesso','Falha'],datasets:[{data:[sucesso,falha],backgroundColor:['#00f2c3','#f56565'],hoverOffset:16,borderWidth:0,borderRadius:8}]},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{family:'Inter',weight:'500',size:11}}}},cutout:'76%'}});
 
   const bCtx=document.getElementById('barChart').getContext('2d');
   if(chartBar)chartBar.destroy();
@@ -1492,7 +1488,7 @@ function toggleTheme() {
   }
 })();
 
-// ── PDF EXPORT (clean light version) ──────
+// ── PDF EXPORT ──────────────────────────────
 async function exportarPDF() {
   const btn = document.getElementById('btnPdf');
   const orig = btn.innerHTML;
@@ -1554,47 +1550,24 @@ async function exportarPDF() {
       fail_bg:    [254, 242, 242],
     };
 
-    function addPage() {
-      pdf.addPage();
-      y = margin;
-    }
+    function addPage() { pdf.addPage(); y = margin; }
     function checkY(need) { if (y + need > pageH - 10) addPage(); }
-
-    function setFont(size, weight='normal', color=C.text) {
-      pdf.setFontSize(size);
-      pdf.setFont('helvetica', weight);
-      pdf.setTextColor(...color);
-    }
-
+    function setFont(size, weight='normal', color=C.text) { pdf.setFontSize(size); pdf.setFont('helvetica', weight); pdf.setTextColor(...color); }
     function drawRect(x, ry, w, h, fillColor, strokeColor) {
       if (fillColor) { pdf.setFillColor(...fillColor); pdf.rect(x, ry, w, h, 'F'); }
       if (strokeColor) { pdf.setDrawColor(...strokeColor); pdf.setLineWidth(0.3); pdf.rect(x, ry, w, h, 'S'); }
     }
 
-    function label(txt, x, ly, size=7, color=C.muted) {
-      setFont(size, 'bold', color);
-      pdf.text(txt.toUpperCase(), x, ly);
-    }
-
-    function value(txt, x, ly, size=14, color=C.text) {
-      setFont(size, 'bold', color);
-      pdf.text(txt, x, ly);
-    }
-
-    // ══ HEADER ══
     pdf.setFillColor(...C.primary);
     pdf.rect(0, 0, pdfW, 1.5, 'F');
 
     y = 10;
     setFont(18, 'bold', C.primary);
     pdf.text('Orbit', margin, y);
-
     setFont(8, 'normal', C.muted);
     pdf.text('Analytics · Enterprise Edition', margin + 22, y);
-
     setFont(7, 'normal', C.muted);
-    const dateStr = new Date().toLocaleString('pt-BR');
-    pdf.text('Gerado em: ' + dateStr, pdfW - margin, y, { align: 'right' });
+    pdf.text('Gerado em: ' + new Date().toLocaleString('pt-BR'), pdfW - margin, y, { align: 'right' });
 
     y += 5;
     pdf.setDrawColor(...C.border); pdf.setLineWidth(0.4);
@@ -1612,12 +1585,9 @@ async function exportarPDF() {
     const bannerText  = insightPct ? (parseFloat(insightPct) > 70 ? C.accent : C.danger) : C.accent;
     checkY(18);
     drawRect(margin, y, colW, 16, bannerColor, C.border);
-    setFont(7, 'bold', bannerText);
-    pdf.text(insightLabel.toUpperCase(), margin + 3, y + 5);
-    setFont(9, 'normal', C.text);
-    pdf.text(insightText, margin + 3, y + 10);
-    setFont(15, 'bold', bannerText);
-    pdf.text(insightPct, pdfW - margin - 3, y + 10, { align: 'right' });
+    setFont(7, 'bold', bannerText); pdf.text(insightLabel.toUpperCase(), margin + 3, y + 5);
+    setFont(9, 'normal', C.text); pdf.text(insightText, margin + 3, y + 10);
+    setFont(15, 'bold', bannerText); pdf.text(insightPct, pdfW - margin - 3, y + 10, { align: 'right' });
     y += 21;
 
     checkY(24);
@@ -1626,24 +1596,18 @@ async function exportarPDF() {
     const kpiLabels = ['TOTAL DE CLIENTES', 'SUCESSO DE ENVIO', 'FALHA DE ENVIO'];
     const kpiVals   = [total, sucesso, falha];
     const kpiSubs   = ['', taxaS, taxaF];
-
     kpiColors.forEach((col, i) => {
       const kx = margin + i * (kpiW + 2);
       drawRect(kx, y, kpiW, 20, [248, 250, 252], C.border);
       pdf.setFillColor(...col); pdf.rect(kx, y + 19.5, kpiW, 1, 'F');
-      setFont(6, 'bold', C.muted);
-      pdf.text(kpiLabels[i], kx + 3, y + 5.5);
-      setFont(14, 'bold', col);
-      pdf.text(kpiVals[i], kx + 3, y + 14);
+      setFont(6, 'bold', C.muted); pdf.text(kpiLabels[i], kx + 3, y + 5.5);
+      setFont(14, 'bold', col); pdf.text(kpiVals[i], kx + 3, y + 14);
       if (kpiSubs[i]) { setFont(7, 'normal', C.muted); pdf.text(kpiSubs[i], kx + 3, y + 18.5); }
     });
     y += 26;
 
     checkY(36);
-    setFont(10, 'bold', C.text);
-    pdf.text('Funil de Conversão', margin, y);
-    y += 5;
-
+    setFont(10, 'bold', C.text); pdf.text('Funil de Conversão', margin, y); y += 5;
     const funilW = (colW - 4) / 3;
     const funilColors = [C.accent, C.primary, [217, 119, 6]];
     funil.forEach((f, i) => {
@@ -1657,10 +1621,7 @@ async function exportarPDF() {
     y += 27;
 
     checkY(10);
-    setFont(10, 'bold', C.text);
-    pdf.text('Distribuição de Status', margin, y);
-    y += 5;
-
+    setFont(10, 'bold', C.text); pdf.text('Distribuição de Status', margin, y); y += 5;
     drawRect(margin, y, colW, 7, [241, 245, 249], C.border);
     setFont(6.5, 'bold', C.muted);
     pdf.text('STATUS', margin + 3, y + 4.5);
@@ -1672,27 +1633,17 @@ async function exportarPDF() {
       checkY(8);
       const rowBg = i % 2 === 0 ? [255,255,255] : [248,250,252];
       drawRect(margin, y, colW, 7.5, rowBg, C.border);
-      if (!item.ok) {
-        pdf.setFillColor(254, 242, 242);
-        pdf.rect(margin, y, 2.5, 7.5, 'F');
-      } else {
-        pdf.setFillColor(...C.accent);
-        pdf.rect(margin, y, 2.5, 7.5, 'F');
-      }
-      setFont(7.5, 'normal', C.text);
-      pdf.text(item.label, margin + 5, y + 5);
-      setFont(7.5, 'bold', item.ok ? C.accent : C.danger);
-      pdf.text(item.n, margin + colW * 0.62, y + 5);
-      setFont(7.5, 'normal', C.muted);
-      pdf.text(item.p, margin + colW * 0.82, y + 5);
+      if (!item.ok) { pdf.setFillColor(254, 242, 242); pdf.rect(margin, y, 2.5, 7.5, 'F'); }
+      else { pdf.setFillColor(...C.accent); pdf.rect(margin, y, 2.5, 7.5, 'F'); }
+      setFont(7.5, 'normal', C.text); pdf.text(item.label, margin + 5, y + 5);
+      setFont(7.5, 'bold', item.ok ? C.accent : C.danger); pdf.text(item.n, margin + colW * 0.62, y + 5);
+      setFont(7.5, 'normal', C.muted); pdf.text(item.p, margin + colW * 0.82, y + 5);
       y += 7.5;
     });
     y += 5;
 
     checkY(28);
-    setFont(10, 'bold', C.text);
-    pdf.text('Principal Gargalo', margin, y);
-    y += 5;
+    setFont(10, 'bold', C.text); pdf.text('Principal Gargalo', margin, y); y += 5;
     drawRect(margin, y, colW, 12, C.fail_bg, C.border);
     pdf.setFillColor(...C.danger); pdf.rect(margin, y, 2.5, 12, 'F');
     setFont(6, 'bold', C.danger); pdf.text('PRINCIPAL GARGALO', margin + 5, y + 4.5);
